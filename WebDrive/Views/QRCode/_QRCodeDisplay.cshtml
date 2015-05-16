@@ -1,0 +1,12 @@
+﻿<div style="margin:0 auto;">
+    @if (ViewBag.codeString == null || ViewBag.codeString == "")
+    {
+        <p>No QR Code was generated!</p>
+    }
+    else
+    {
+        string imgPath = "/QRCode/GetCodeImage?codeString=" + ViewBag.codeString;
+        <img src=@imgPath width="300" alt="" />
+    }
+    
+</div>

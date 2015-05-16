@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "upload";
+}
+
+@section head{
+    <script src="@Url.Content("~/Scripts/SparkMD5/spark-md5.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Scripts/Uploadifive/uploadifive.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/Uploadifive/jquery.uploadifive.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#file_upload').uploadifive({
+                'uploadScript': '/RealFile/Upload/',
+                'cancelImage': '/Scripts/Uploadifive/uploadifive-cancel.png',
+                'auto': false,
+                'multi': false,
+                'uploadLimit': 1,
+                'fileSizeLimit': 0,
+            });
+        });
+    </script>
+    <style type="text/css">
+        body
+        {
+            font-size: 12px;
+        }
+        .tip
+        {
+            height: 20px;
+            border-bottom: 1px solid #CCC;
+            margin-bottom: 10px;
+        }
+    </style>
+}
+
+<h2>upload</h2>
+
+
+<input type="file" id="file_upload" name="file_upload"/>
+<p>
+    <a href="javascript:doIncrementalTest('file_upload')">Upload</a>
+    <a href="javascript:$('#file_upload').uploadifive('cancel')">Cancled</a>
+</p>
+<div id="log"></div>
+
+<script src="@Url.Content("~/Scripts/SparkMD5/VerifyMD5.js")" type="text/javascript"></script>
+

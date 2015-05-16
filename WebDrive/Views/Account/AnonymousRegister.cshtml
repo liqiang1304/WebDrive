@@ -1,0 +1,39 @@
+﻿@model WebDrive.Models.AnonymousRegisterModel
+@{
+    ViewBag.Title = "AnonymousRegister";
+}
+
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Register New Anonymous User</h2>
+</hgroup>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.ExpireLoginDate)
+                @Html.EditorFor(m => m.ExpireLoginDate)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ExpireLoginTime)
+                @Html.EditorFor(m => m.ExpireLoginTime)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ExpireLoginCounts)
+                @Html.EditorFor(m => m.ExpireLoginCounts)
+            </li>
+
+        </ol>
+        <input type="submit" value="AnonymousRegister" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

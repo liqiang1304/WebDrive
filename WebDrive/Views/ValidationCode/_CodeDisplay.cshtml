@@ -1,0 +1,12 @@
+﻿@{
+    string codeString = ViewBag.validationString;
+}
+
+@section head{
+    <script type="text/javascript" src="@Url.Content("~/scripts/AjaxRefreshCode.js")"></script>
+}
+
+<input type="text" readonly="value" value="@codeString" id="validationBox">
+<input type="button" value="Refresh" id="refreshCode"/>
+<br />
+<span>Please input validation code in </span><span id="countDownSpan"></span><span> second(s).</span>
