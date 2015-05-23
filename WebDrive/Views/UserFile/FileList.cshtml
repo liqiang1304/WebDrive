@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "FileList";
+}
+@section head{
+    <link rel="stylesheet" href="/Content/normalize.css">
+    <link rel="stylesheet" href="/Content/bootstrap.css">
+    <link rel="stylesheet" href="/Content/mmGrid.css">
+    <link rel="stylesheet" href="/Content/mmGrid-bootstrap.css">
+    <link rel="stylesheet" href="/Content/mmPaginator.css">
+    <link rel="stylesheet" href="/Content/mmPaginator-bootstrap.css">
+
+    <script src="/Scripts/mmGrid/modernizr-2.6.2.min.js"></script>
+    <script src="/Scripts/mmGrid/json2.js"></script>
+    <script src="/Scripts/mmGrid/mmGrid.js"></script>
+    <script src="/Scripts/mmGrid/mmPaginator.js"></script>
+    <script src="/Scripts/mmGrid/FileListScript.js"></script>
+
+    <style>
+        html,
+        body{
+            font-family: 'Helvetica Neue',helvetica, "Hiragino Sans GB",'Microsoft YaHei', "WenQuanYi Micro Hei", sans-serif;
+            font-size: 12px;
+            color: #444;
+        }
+        .btn{
+            font-size: 12px;
+        }
+        .btnPrice {
+            display: block;
+            width: 16px;
+            height: 16px;
+            margin: 0px auto;
+            background: url(/Content/img/botton_g1.gif) no-repeat;
+        }
+        .btnDir {
+            display: block;
+            width: 16px;
+            height: 16px;
+            margin: 0px auto;
+            background: url(/Content/img/directory.png);
+        }
+        .btnFile {
+            display: block;
+            width: 16px;
+            height: 16px;
+            margin: 0px auto;
+            background: url(/Content/img/file.png);
+        }
+    </style>
+}
+
+<h2>FileList</h2>
+
+<main>
+    <div style="margin-bottom: 5px;">
+        <button id="btnUp" class="btn">UP</button>
+        <button id="btnNewDir" class="btn">NEW</button>
+        <input id="secucode" placeholder="查询条件:股票代码" style="margin-left: 20px;"> <button id="btnSearch" class="btn" >搜索</button>
+    </div>
+    <table id="mmg" class="mmg">
+        <tr>
+            <th rowspan="" colspan=""></th>
+        </tr>
+    </table>
+    <div id="pg" style="text-align: right;"></div>
+</main>

@@ -68,6 +68,39 @@ namespace WebDrive.Migrations
                     ValidateString = "357823"
                 }
             };
+
+            var userFile = new List<UserFile>
+            {
+                new UserFile{
+                    RealFileID = 9,
+                    UserID = 14,
+                    FileName = "file1",
+                    FileType = "exe",
+                    ParentFileID = 0,
+                    Directory = false,
+                    CreateDate = DateTime.Now,
+                },
+                new UserFile{
+                    RealFileID = 1,
+                    UserID = 14,
+                    FileName = "dir1",
+                    FileType = "dir",
+                    ParentFileID = 0,
+                    Directory = true,
+                    CreateDate = DateTime.Now,
+                },
+                new UserFile{
+                    RealFileID = 1,
+                    UserID = 14,
+                    FileName = "dir2",
+                    FileType = "dir",
+                    ParentFileID = 0,
+                    Directory = true,
+                    CreateDate = DateTime.Now,
+                }
+            };
+            userFile.ForEach(s => context.UserFiles.AddOrUpdate(s));
+            context.SaveChanges();
         }
     }
 }

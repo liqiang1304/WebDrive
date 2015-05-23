@@ -48,12 +48,14 @@ namespace WebDrive
         container.RegisterType<IRepository<QRCode>, GenericRepository<QRCode>>();
         container.RegisterType<IRepository<ValidationCode>, GenericRepository<ValidationCode>>();
         container.RegisterType<IRepository<RealFile>, GenericRepository<RealFile>>();
+        container.RegisterType<IRepository<UserFile>, GenericRepository<UserFile>>();
 
         //Service
         container.RegisterType<IUserProfileService, UserProfileService>();
         container.RegisterType<IQRCodeService, QRCodeService>();
         container.RegisterType<IValidationCodeService, ValidationCodeService>();
         container.RegisterType<IRealFileService, RealFileService>();
+        container.RegisterType<IUserFileService, UserFileService>();
 
         //UnitOfWork
         container.RegisterType<IUnitOfWork, UnitOfWork>();

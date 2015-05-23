@@ -14,6 +14,7 @@ namespace WebDrive.DAL.Context
         public DbSet<QRCode> QRCodes { get; set; }
         public DbSet<ValidationCode> ValidationCodes { get; set; }
         public DbSet<RealFile> RealFiles { get; set; }
+        public DbSet<UserFile> UserFiles { get; set; }
 
         public WebContext()
         {

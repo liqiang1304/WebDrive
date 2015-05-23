@@ -228,6 +228,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QRCodeController.cs" />
     <Compile Include="Controllers\RealFileController.cs" />
+    <Compile Include="Controllers\UserFileController.cs" />
     <Compile Include="Controllers\ValidationCodeController.cs" />
     <Compile Include="DAL\Context\WebContext.cs" />
     <Compile Include="DAL\DbContextFactory\DbContextFactory.cs" />
@@ -273,25 +274,56 @@
     <Compile Include="Migrations\201505151411332_add-MD5-RealFile.Designer.cs">
       <DependentUpon>201505151411332_add-MD5-RealFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505230324058_add-UserFile.cs" />
+    <Compile Include="Migrations\201505230324058_add-UserFile.Designer.cs">
+      <DependentUpon>201505230324058_add-UserFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\QRCode.cs" />
     <Compile Include="Models\RealFile.cs" />
+    <Compile Include="Models\UserFile.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\ValidationCode.cs" />
     <Compile Include="Service\Interface\IQRCodeService.cs" />
     <Compile Include="Service\Interface\IRealFileService.cs" />
     <Compile Include="Service\Interface\IResult.cs" />
+    <Compile Include="Service\Interface\IUserFileService.cs" />
     <Compile Include="Service\Interface\IUserProfileService.cs" />
     <Compile Include="Service\Interface\IValidationCodeService.cs" />
     <Compile Include="Service\QRCodeService.cs" />
     <Compile Include="Service\RealFileService.cs" />
     <Compile Include="Service\Result.cs" />
+    <Compile Include="Service\UserFileService.cs" />
     <Compile Include="Service\UserProfileService.cs" />
     <Compile Include="Service\ValidationCodeService.cs" />
     <Compile Include="ViewModels\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\img\arrow_down.png" />
+    <Content Include="Content\img\arrow_up.png" />
+    <Content Include="Content\img\botton_g1.gif" />
+    <Content Include="Content\img\botton_g2.gif" />
+    <Content Include="Content\img\directory.png" />
+    <Content Include="Content\img\file.png" />
+    <Content Include="Content\img\furley_bg.png" />
+    <Content Include="Content\img\furley_bg_%402X.png" />
+    <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\low_contrast_linen.png" />
+    <Content Include="Content\img\low_contrast_linen_%402X.png" />
+    <Content Include="Content\img\pw_maze_white.png" />
+    <Content Include="Content\img\pw_maze_white_%402X.png" />
+    <Content Include="Content\img\sort-asc.png" />
+    <Content Include="Content\img\sort-desc.png" />
+    <Content Include="Content\mmGrid-bootstrap.css" />
+    <Content Include="Content\mmGrid.css" />
+    <Content Include="Content\mmPaginator-bootstrap.css" />
+    <Content Include="Content\mmPaginator.css" />
+    <Content Include="Scripts\mmGrid\FileListScript.js" />
+    <Content Include="Scripts\mmGrid\json2.js" />
+    <Content Include="Scripts\mmGrid\modernizr-2.6.2.min.js" />
+    <Content Include="Content\normalize.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -348,6 +380,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\img\Thumbs.db" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\AjaxRefreshCode.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -363,6 +396,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\mmGrid\mmGrid.js" />
+    <Content Include="Scripts\mmGrid\mmPaginator.js" />
+    <Content Include="Scripts\mmGrid\plugins.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\SparkMD5\spark-md5.js" />
     <Content Include="Scripts\SparkMD5\spark-md5.min.js" />
@@ -444,6 +480,8 @@
     <Content Include="Scripts\Uploadifive\Thumbs.db" />
     <Content Include="Scripts\Uploadifive\uploadifive-image-only.php" />
     <Content Include="Scripts\Uploadifive\uploadifive.php" />
+    <Content Include="Views\UserFile\index.cshtml" />
+    <Content Include="Views\UserFile\FileList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -469,6 +507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505151411332_add-MD5-RealFile.resx">
       <DependentUpon>201505151411332_add-MD5-RealFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505230324058_add-UserFile.resx">
+      <DependentUpon>201505230324058_add-UserFile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

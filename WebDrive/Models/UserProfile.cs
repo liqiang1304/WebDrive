@@ -29,5 +29,6 @@ namespace WebDrive.Models
 
         public virtual QRCode QRCode { get; set; }
         public virtual ValidationCode ValidationCodes { get; set; }
+        public virtual ICollection<UserFile> UserFiles { get; set; }
     }
 }

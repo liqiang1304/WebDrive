@@ -21,5 +21,7 @@ namespace WebDrive.Models
         public DateTime CreateDate { get; set; }
         public bool Available { get; set; }
         public string MD5 { get; set; }
+
+        public virtual ICollection<UserFile> UserFiles { get; set; }
     }
 }
