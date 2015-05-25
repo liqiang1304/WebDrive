@@ -15,6 +15,9 @@
                 'multi': false,
                 'uploadLimit': 1,
                 'fileSizeLimit': 0,
+                'onUploadComplete': function () {
+                    window.close();
+                }
             });
         });
     </script>

@@ -11,10 +11,20 @@ namespace WebDrive.Service.Interface
     {
         List<UserFile> GetDir(int ParentID, int userID);
 
-        UserFile GetCurrentDir(int ID, int userID);
+        UserFile GetCurrentDir(int ID);
 
         int GetParentDirID(int CurrentID);
 
         IResult NewDir(string name, int parentID, int userID);
+
+        IResult NewFile(string name, string type, int parentID, int realFileID, int userID);
+
+        IResult Rename(int FileID, string newName);
+
+        IResult Delete(List<int> filesIDToBeDel);
+
+        List<UserFile> Search(string searchName, int userID);
+
+        UserFile GetByID(int userFileID);
     }
 }

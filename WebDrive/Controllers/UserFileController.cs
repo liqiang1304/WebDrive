@@ -37,23 +37,24 @@ namespace WebDrive.Controllers
         {
             int userID = WebSecurity.CurrentUserId;
             List<UserFile> userFiles = this._userFileService.GetDir(parentID, userID);
-            UserFile currentUserFile = this._userFileService.GetCurrentDir(parentID, userID);
-            var JSONOjb = new object[userFiles.Count+1];
+            UserFile currentUserFile = this._userFileService.GetCurrentDir(parentID);
+            var JsonObj = new object[userFiles.Count+1];
             for (int i = 0; i < userFiles.Count; i++)
             {
-                JSONOjb[i] = new 
+                JsonObj[i] = new 
                 {
-                    FileName = userFiles[i].FileName, 
-                    CreateDate = userFiles[i].CreateDate.ToUniversalTime().ToString(), 
+                    FileName = userFiles[i].FileName,
+                    CreateDate = userFiles[i].CreateDate.ToUniversalTime().ToString("yyyy-MM-dd HH:mm"), 
                     FileSize = userFiles[i].Directory?0:int.Parse(userFiles[i].RealFile.FileSize),
                     UserFileID = userFiles[i].UserFileID,
                     ParentFileID = userFiles[i].ParentFileID,
                     Directory = userFiles[i].Directory,
+                    FileType = userFiles[i].FileType
                 };
             }
             if (currentUserFile != null)
             {
-                JSONOjb[userFiles.Count] = new
+                JsonObj[userFiles.Count] = new
                 {
                     currentDirID = currentUserFile.UserFileID,
                     currentParentID = currentUserFile.ParentFileID
@@ -61,13 +62,13 @@ namespace WebDrive.Controllers
             }
             else
             {
-                JSONOjb[userFiles.Count] = new
+                JsonObj[userFiles.Count] = new
                 {
                     currentDirID = 0,
                     currentParentID = 0
                 };
             }
-            return Json(JSONOjb, JsonRequestBehavior.AllowGet);
+            return Json(JsonObj, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -83,6 +84,55 @@ namespace WebDrive.Controllers
             int userID = WebSecurity.CurrentUserId;
             IResult result = this._userFileService.NewDir(dirName, parentID, userID);
             return Json(new {success = result.Success}, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult Rename(int fileID, string newName)
+        {
+            IResult result = this._userFileService.Rename(fileID, newName);
+            return Json(new { success = result.Success }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult Del(List<int> filesToBeDelete)
+        {
+            IResult result = this._userFileService.Delete(filesToBeDelete);
+            return Json(new { success = result.Success }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult Search(string searchName, int currentDirID, int currentParentID)
+        {
+            int userID = WebSecurity.CurrentUserId;
+            List<UserFile> userFiles = this._userFileService.Search(searchName, userID);
+            var JsonObj = new object[userFiles.Count+1];
+            for (int i = 0; i < userFiles.Count; ++i)
+            {
+                JsonObj[i] = new
+                {
+                    FileName = userFiles[i].FileName,
+                    CreateDate = userFiles[i].CreateDate.ToUniversalTime().ToString("yyyy-MM-dd HH:mm"),
+                    FileSize = userFiles[i].Directory ? 0 : int.Parse(userFiles[i].RealFile.FileSize),
+                    UserFileID = userFiles[i].UserFileID,
+                    ParentFileID = userFiles[i].ParentFileID,
+                    Directory = userFiles[i].Directory,
+                    FileType = userFiles[i].FileType
+                };
+            }
+            JsonObj[userFiles.Count] = new
+            {
+                currentDirID = currentDirID,
+                currentParentID = currentParentID
+            };
+            return Json(JsonObj, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult AddExistFile(string fileName, string fileType, int parentID, int realFileID)
+        {
+            int userID = WebSecurity.CurrentUserId;
+            IResult result = this._userFileService.NewFile(fileName, fileType, parentID, realFileID, userID);
+            return Json(new { success = result.Success }, JsonRequestBehavior.AllowGet);
         }
     }
 }

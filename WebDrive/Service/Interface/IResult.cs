@@ -17,5 +17,7 @@ namespace WebDrive.Service.Interface
         Exception Exception { get; set; }
 
         List<IResult> InnerResults { get; }
+
+        int ReturnInt { get; set; }
     }
 }

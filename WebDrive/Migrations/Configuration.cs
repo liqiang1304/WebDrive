@@ -101,6 +101,36 @@ namespace WebDrive.Migrations
             };
             userFile.ForEach(s => context.UserFiles.AddOrUpdate(s));
             context.SaveChanges();
+
+            var share = new List<Share>
+            {
+                new Share{
+                    UserID = 29,
+                    RealFileID = 28,
+                    SharedType = 0,
+                    SharedDate = DateTime.Now,
+                    ExpireDate = DateTime.Parse("2015-07-20"),
+                    Password = "0",
+                    ExpireCounts = 0,
+                    DownloadCounts = 0,
+                    Private = false,
+                    SharedQRCode = "0",
+                },
+                new Share{
+                    UserID = 29,
+                    RealFileID = 27,
+                    SharedType = 0,
+                    SharedDate = DateTime.Now,
+                    ExpireDate = DateTime.Parse("2015-07-20"),
+                    Password = "0",
+                    ExpireCounts = 0,
+                    DownloadCounts = 0,
+                    Private = false,
+                    SharedQRCode = "0",
+                }
+            };
+            share.ForEach(s => context.Shares.AddOrUpdate(s));
+            context.SaveChanges();
         }
     }
 }

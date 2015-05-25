@@ -15,6 +15,7 @@ namespace WebDrive.DAL.Context
         public DbSet<ValidationCode> ValidationCodes { get; set; }
         public DbSet<RealFile> RealFiles { get; set; }
         public DbSet<UserFile> UserFiles { get; set; }
+        public DbSet<Share> Shares { get; set; }
 
         public WebContext()
         {

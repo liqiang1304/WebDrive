@@ -109,3 +109,4 @@ C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\bin\Bot
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addTableRealFile.resources
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addMD5RealFile.resources
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addUserFile.resources
+C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addTableShare.resources

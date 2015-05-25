@@ -18,20 +18,23 @@
             }
         },
         {
-            title: 'File Name', name:'FileName', width:230, sortable:true, align:'left'
+            title: 'File Name', name:'FileName', width:230, align:'left'
         },
         {
-            title: 'Size', name:'FileSize', width:60, sortable:true, type: 'number', align:'center'
+            title: 'Type', name:'FileType', width:50, align:'center'
         },
         {
-            title: 'Create Date', name:'CreateDate', width:100, sortable:true, align:'center'
+            title: 'Size', name:'FileSize', width:60, type: 'number', align:'center'
         },
         {
-            title: 'Operation', name: '', width: 90, align: 'center', lockWidth: true, lockDisplay: true, renderer: function (val, item, rowIndex) {
+            title: 'Create Date', name:'CreateDate', width:100, align:'center'
+        },
+        {
+            title: 'Operation', name: '', width: 180, align: 'center', lockWidth: true, lockDisplay: true, renderer: function (val, item, rowIndex) {
                 if (item.Directory) {
-                    return '<button  class="btn btn-info">&nbsp&nbsp&nbsp Open &nbsp&nbsp&nbsp</button>';
+                    return '<button  class="btn btn-info">&nbsp&nbsp&nbsp Open &nbsp&nbsp&nbsp</button> <button  class="btn btn-danger">Rename</button>';
                 } else {
-                    return '<button  class="btn btn-info">Download</button>'
+                    return '<button  class="btn btn-info">Download</button> <button  class="btn btn-danger">Rename</button>'
                 }
             }
         }
@@ -45,8 +48,8 @@
         , remoteSort: true
         //, items: items
         , params: {ParentID: 0}
-        , sortName: 'FileName'
-        , sortStatus: 'asc'
+        //, sortName: 'FileName'
+        //, sortStatus: 'asc'
         , multiSelect: true
         , checkCol: true
         , fullWidthRows: true
@@ -76,10 +79,32 @@
             //alert(JSON.stringify(item));
             if (item.Directory) {
                 mmg.load({ ParentID: item.UserFileID });
+            } else {
+                var url = '/RealFile/DownloadFile';
+                var data = {
+                    userFileID: item.UserFileID
+                };
+                //$.post(url, data, function () { });
+                window.location.href = "/RealFile/DownloadFile?userFileID=" + item.UserFileID;
             }
-        } else if ($(e.target).is('.btn-danger') && confirm('你确定要删除该行记录吗?')) {
+        } else if ($(e.target).is('.btn-danger')) {
             e.stopPropagation(); //阻止事件冒泡
-            mmg.removeRow(rowIndex);
+            //mmg.removeRow(rowIndex);
+            var name = prompt("Please input new name:");
+            if (name != null && name != "") {
+                var url = "/UserFile/Rename";
+                var data = {
+                    newName: name,
+                    fileID: item.UserFileID
+                };
+                $.get(url, data, function (response) {
+                    if (response.success) {
+                        mmg.load({ ParentID: window.currentDir.currentDirID });
+                    } else {
+                        alert("Rename failed!");
+                    }
+                });
+            }
         }
     }).on('loadSuccess', function (e, data) {
         //这个事件需要在数据加载之前注册才能触发
@@ -138,10 +163,53 @@
         }
     });
 
-    $('#btnSearch').on('click', function () {
-        //点击查询时页码置为1
-        mmg.load({ page: 1 });
+    $('#btnDel').on("click", function () {
+        var url = "/UserFile/Del";
+        var data = [];
+
+        var selectedRows = mmg.selectedRows();
+        var filesIDToBeDel = [];
+        for (var i = 0; i < selectedRows.length; ++i) {
+            //filesIDToBeDel[i] = selectedRows[i].UserFileID;
+            data.push({ name: 'filesToBeDelete', value: selectedRows[i].UserFileID });
+        }
+        
+        $.get(url, data, function (response) {
+            if (response.success) {
+                mmg.load({ ParentID: response.ParentDirID });
+            } else {
+                alert("Delete failed!");
+            }
+        });
     });
 
+    $('#btnSearch').on('click', function () {
+        //点击查询时页码置为1
+        var searchString = $('#secucode').val();
+        console.log(searchString);
+        var url = "/UserFile/Search";
+        var data = {
+            searchName: searchString,
+            currentDirID: window.currentDir.currentDirID,
+            currentParentID: window.currentDir.currentParentID
+        };
+        $.get(url, data, function (response) {
+            mmg.load(response);
+            console.log(response);
+        });
+    });
+
+    var childWin;
+    var IfWindowClosed = function () {
+        if (childWin.closed == true) {
+            window.clearInterval(timer);
+            mmg.load({ ParentID: window.currentDir.currentDirID });
+        };
+    };
+
+    $('#btnUpload').on('click', function () {
+        childWin = window.open("/RealFile/Upload", "_blank", "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400")
+        timer = window.setInterval(IfWindowClosed, 500);
+    });
 
 });

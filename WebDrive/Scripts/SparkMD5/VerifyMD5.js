@@ -78,11 +78,35 @@
                             };
                             $.get(url, data ,function(response){
                                 if(!response.IsRepeat){
-                                    // $.post(postUrl, data, function(response){});
                                     $('#file_upload').uploadifive('upload');
                                 }else{
                                     $(window.ququeID).find('.uploadifive-queue-item').not('.error, .complete').data('file').queueItem.find('.progress-bar').css('width', 100 + '%');
-                                    $(window.ququeID).find('.uploadifive-queue-item').not('.error, .complete').data('file').queueItem.find('.fileinfo').html(' - ' + 100+ '%');
+                                    $(window.ququeID).find('.uploadifive-queue-item').not('.error, .complete').data('file').queueItem.find('.fileinfo').html(' - ' + 100 + '%');
+                                    var fileInfo = $(window.ququeID).find('.uploadifive-queue-item').not('.error, .complete').data('file');
+                                    var splitName = fileInfo.name.split('.');
+                                    var fileName = "";
+                                    var fileType = "";
+                                    for (var i = 0; i < splitName.length - 1; i++) {
+                                        fileName += splitName[i];
+                                    }
+                                    fileType = splitName[splitName.length - 1];
+                                    var url = '/UserFile/AddExistFile';
+                                    var data = {
+                                        fileName : fileName, 
+                                        fileType : fileType, 
+                                        parentID: opener.currentDir.currentDirID,
+                                        realFileID : response.RealFileID
+                                    };
+                                    if (fileName && fileType) {
+                                        $.get(url, data, function (response) {
+                                            if (response.success) {
+                                                window.close();
+                                            }
+                                        });
+                                    } else {
+                                        alert("File name and type is needed!");
+                                        window.close();
+                                    }
                                 }
                             })
                             

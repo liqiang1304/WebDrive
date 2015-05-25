@@ -38,6 +38,7 @@ namespace WebDrive.Service
                 this._repository.Insert(rf);
                 this._unitOfWork.SaveChange();
                 result.Success = true;
+                result.ReturnInt = rf.RealFileID;
                 return result;
             }
             catch (Exception e)

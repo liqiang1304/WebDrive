@@ -16,6 +16,8 @@ namespace WebDrive.Service
 
         public List<IResult> InnerResults { get; protected set; }
 
+        public int ReturnInt { get; set; }
+
         public Result() : this(false)
         {
 

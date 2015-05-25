@@ -278,21 +278,28 @@
     <Compile Include="Migrations\201505230324058_add-UserFile.Designer.cs">
       <DependentUpon>201505230324058_add-UserFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505251443042_addTable-Share.cs" />
+    <Compile Include="Migrations\201505251443042_addTable-Share.Designer.cs">
+      <DependentUpon>201505251443042_addTable-Share.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\QRCode.cs" />
     <Compile Include="Models\RealFile.cs" />
+    <Compile Include="Models\Share.cs" />
     <Compile Include="Models\UserFile.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\ValidationCode.cs" />
     <Compile Include="Service\Interface\IQRCodeService.cs" />
     <Compile Include="Service\Interface\IRealFileService.cs" />
     <Compile Include="Service\Interface\IResult.cs" />
+    <Compile Include="Service\Interface\IShareService.cs" />
     <Compile Include="Service\Interface\IUserFileService.cs" />
     <Compile Include="Service\Interface\IUserProfileService.cs" />
     <Compile Include="Service\Interface\IValidationCodeService.cs" />
     <Compile Include="Service\QRCodeService.cs" />
     <Compile Include="Service\RealFileService.cs" />
     <Compile Include="Service\Result.cs" />
+    <Compile Include="Service\ShareService.cs" />
     <Compile Include="Service\UserFileService.cs" />
     <Compile Include="Service\UserProfileService.cs" />
     <Compile Include="Service\ValidationCodeService.cs" />
@@ -510,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505230324058_add-UserFile.resx">
       <DependentUpon>201505230324058_add-UserFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505251443042_addTable-Share.resx">
+      <DependentUpon>201505251443042_addTable-Share.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -25,10 +25,10 @@ namespace WebDrive.Service
             return this._repository.Get(x => x.ParentFileID == ParentID && x.UserID == userID, null, null).ToList();
         }
 
-        public int GetParentDirID(int CurrentParentID, int userID)
+        public int GetParentDirID(int CurrentParentID)
         {
             if (CurrentParentID == 0) return 0;
-            UserFile userFile = this._repository.Get(x => x.UserFileID == CurrentParentID && x.UserID == userID, null, null).SingleOrDefault();
+            UserFile userFile = this._repository.Get(x => x.UserFileID == CurrentParentID, null, null).SingleOrDefault();
             if (userFile != null)
             {
                 return userFile.ParentFileID;
@@ -70,6 +70,110 @@ namespace WebDrive.Service
                 result.Exception = e;
             }
             return result;
+        }
+
+        public IResult Rename(int FileID, string newName)
+        {
+            IResult result = new Result(false);
+            UserFile userFile = this._repository.Get(x => x.UserFileID == FileID, null, null).SingleOrDefault();
+            if (userFile == null) return result;
+            userFile.FileName = newName;
+            try
+            {
+                this._repository.Update(userFile);
+                this._unitOfWork.SaveChange();
+                result.Success = true;
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+            }
+            return result;
+        }
+
+        public IResult NewFile(string name, string type, int parentID, int realFileID, int userID)
+        {
+            IResult result = new Result(false);
+            UserFile userFile = new UserFile()
+            {
+                FileName = name,
+                FileType = type,
+                ParentFileID = parentID,
+                RealFileID = realFileID,
+                UserID = userID,
+                Directory = false,
+                CreateDate = DateTime.Now,
+            };
+            try
+            {
+                this._repository.Insert(userFile);
+                this._unitOfWork.SaveChange();
+                result.Success = true;
+
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+            }
+            return result;
+        }
+
+
+        public IResult Delete(List<int> filesIDToBeDel)
+        {
+            IResult result = new Result(false);
+            for (int i = 0; i < filesIDToBeDel.Count; ++i)
+            {
+                result = DelSubFloder(filesIDToBeDel[i]);
+                if (result.Success == false) break;
+            }
+            try
+            {
+                this._unitOfWork.SaveChange();
+            }
+            catch (Exception e)
+            {
+                result.Success = true;
+            }
+            return result;
+        }
+
+        private IResult DelSubFloder(int fileToBeDel)
+        {
+            IResult result = new Result(false);
+            if(fileToBeDel!=0){
+                List<UserFile> userFiles = this._repository.Get(x => x.ParentFileID == fileToBeDel, null, null).ToList();
+                for (int i = 0; i < userFiles.Count; ++i)
+                {
+                    IResult returnResult = DelSubFloder(userFiles[i].UserFileID);
+                    if (returnResult.Success == false) return returnResult;
+                }
+                UserFile userFile = this._repository.Get(x => x.UserFileID == fileToBeDel, null, null).SingleOrDefault();
+                if (userFile != null)
+                {
+                    try
+                    {
+                        this._repository.Delete(userFile);
+                        result.Success = true;
+                    }
+                    catch(Exception e)
+                    {
+                        result.Exception = e;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public List<UserFile> Search(string searchName, int userID)
+        {
+            List<UserFile> userFiles = this._repository.Get(x => x.FileName.Contains(searchName), null, null).ToList();
+            return userFiles;
+        }
+
+        public UserFile GetByID(int userFileID)
+        {
+            return this._repository.Get(x => x.UserFileID == userFileID, null, null).SingleOrDefault();
         }
     }
 }

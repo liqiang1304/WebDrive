@@ -49,6 +49,7 @@ namespace WebDrive
         container.RegisterType<IRepository<ValidationCode>, GenericRepository<ValidationCode>>();
         container.RegisterType<IRepository<RealFile>, GenericRepository<RealFile>>();
         container.RegisterType<IRepository<UserFile>, GenericRepository<UserFile>>();
+        container.RegisterType<IRepository<Share>, GenericRepository<Share>>();
 
         //Service
         container.RegisterType<IUserProfileService, UserProfileService>();
@@ -56,6 +57,7 @@ namespace WebDrive
         container.RegisterType<IValidationCodeService, ValidationCodeService>();
         container.RegisterType<IRealFileService, RealFileService>();
         container.RegisterType<IUserFileService, UserFileService>();
+        container.RegisterType<IShareService, ShareService>();
 
         //UnitOfWork
         container.RegisterType<IUnitOfWork, UnitOfWork>();

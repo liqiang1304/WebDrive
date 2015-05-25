@@ -379,6 +379,7 @@ Released under the UploadiFive Standard License <http://www.uploadify.com/upload
                             // Add the form data
                             formData.append(settings.fileObjName, file);
                             formData.append("MD5", window.MD5string);
+                            formData.append("currentDirID", opener.currentDir.currentDirID);
 
                             // Add the rest of the formData
                             for (i in settings.formData) {
