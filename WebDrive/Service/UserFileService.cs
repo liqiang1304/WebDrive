@@ -109,7 +109,7 @@ namespace WebDrive.Service
                 this._repository.Insert(userFile);
                 this._unitOfWork.SaveChange();
                 result.Success = true;
-
+                result.ReturnInt = userFile.UserFileID;
             }
             catch (Exception e)
             {

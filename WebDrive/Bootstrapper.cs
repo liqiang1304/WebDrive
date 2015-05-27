@@ -51,6 +51,7 @@ namespace WebDrive
         container.RegisterType<IRepository<UserFile>, GenericRepository<UserFile>>();
         container.RegisterType<IRepository<Share>, GenericRepository<Share>>();
         container.RegisterType<IRepository<Recoder>, GenericRepository<Recoder>>();
+        container.RegisterType<IRepository<ShareCode>, GenericRepository<ShareCode>>();
 
         //Service
         container.RegisterType<IUserProfileService, UserProfileService>();
@@ -60,6 +61,7 @@ namespace WebDrive
         container.RegisterType<IUserFileService, UserFileService>();
         container.RegisterType<IShareService, ShareService>();
         container.RegisterType<IRecoderService, RecoderService>();
+        container.RegisterType<IShareCodeService, ShareCodeService>();
 
         //UnitOfWork
         container.RegisterType<IUnitOfWork, UnitOfWork>();

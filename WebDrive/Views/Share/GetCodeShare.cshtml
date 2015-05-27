@@ -1,0 +1,38 @@
+﻿@using BotDetect.Web.UI.Mvc;
+@{
+    ViewBag.Title = "GetCodeShare";
+}
+
+<h2>Get sharing by code</h2>
+
+@using (Html.BeginForm("GetCodeShare", "Share", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Share Code Form</legend>
+        @if (TempData["ValidationCodeeMessage"] != null)
+        {
+            <p>@TempData["ValidationCodeeMessage"]</p>
+        }
+        <ol>
+            <li>
+                <label>Input share code:</label>
+            </li>
+            <li>
+                <input type="text" id="shareCode" name="shareCode" />
+            </li>
+            <li>
+                @Html.Label("CaptchaCode", "Type the code from the picture:")
+                @{
+                    MvcCaptcha sampleCaptcha = new MvcCaptcha("SampleCaptcha");
+                    sampleCaptcha.ImageStyle = BotDetect.ImageStyle.BlackOverlap;
+                }
+                
+                @Html.Captcha(sampleCaptcha)
+                <br />
+                <br />
+                @Html.TextBox("CaptchaCode")
+            </li>
+        </ol>
+        <input type="submit" value="Get" />
+    </fieldset>
+}

@@ -228,6 +228,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QRCodeController.cs" />
     <Compile Include="Controllers\RealFileController.cs" />
+    <Compile Include="Controllers\ShareCodeController.cs" />
     <Compile Include="Controllers\ShareController.cs" />
     <Compile Include="Controllers\UserFileController.cs" />
     <Compile Include="Controllers\ValidationCodeController.cs" />
@@ -295,11 +296,16 @@
     <Compile Include="Migrations\201505270653323_addTable-Recoder.Designer.cs">
       <DependentUpon>201505270653323_addTable-Recoder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505271056510_addTable-ShareCode.cs" />
+    <Compile Include="Migrations\201505271056510_addTable-ShareCode.Designer.cs">
+      <DependentUpon>201505271056510_addTable-ShareCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\QRCode.cs" />
     <Compile Include="Models\RealFile.cs" />
     <Compile Include="Models\Recoder.cs" />
     <Compile Include="Models\Share.cs" />
+    <Compile Include="Models\ShareCode.cs" />
     <Compile Include="Models\UserFile.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\ValidationCode.cs" />
@@ -307,6 +313,7 @@
     <Compile Include="Service\Interface\IRealFileService.cs" />
     <Compile Include="Service\Interface\IRecoderService.cs" />
     <Compile Include="Service\Interface\IResult.cs" />
+    <Compile Include="Service\Interface\IShareCodeService.cs" />
     <Compile Include="Service\Interface\IShareService.cs" />
     <Compile Include="Service\Interface\IUserFileService.cs" />
     <Compile Include="Service\Interface\IUserProfileService.cs" />
@@ -315,6 +322,7 @@
     <Compile Include="Service\RealFileService.cs" />
     <Compile Include="Service\RecoderService.cs" />
     <Compile Include="Service\Result.cs" />
+    <Compile Include="Service\ShareCodeService.cs" />
     <Compile Include="Service\ShareService.cs" />
     <Compile Include="Service\UserFileService.cs" />
     <Compile Include="Service\UserProfileService.cs" />
@@ -485,7 +493,6 @@
     <Content Include="Views\Account\AnonymousRegister.cshtml" />
     <Content Include="Views\QRCode\_QRCodeDisplay.cshtml" />
     <Content Include="Views\Account\GetAonymousQRCode.cshtml" />
-    <Content Include="Views\QRCode\index.cshtml" />
     <Content Include="Views\ValidationCode\_CodeDisplay.cshtml" />
     <Content Include="Scripts\uploadify\check-exists.php" />
     <Content Include="Scripts\uploadify\index.php" />
@@ -512,6 +519,11 @@
     <Content Include="Views\Share\GetShare.cshtml" />
     <Content Include="Views\Share\ShowShareInfo.cshtml" />
     <Content Include="Views\Share\GetQRCodeShare.cshtml" />
+    <Content Include="Views\ShareCode\_DisplayShareCode.cshtml" />
+    <Content Include="Views\ShareCode\index.cshtml" />
+    <Content Include="Views\Share\GetCodeShare.cshtml" />
+    <Content Include="Views\UserFile\AnonymousUpload.cshtml" />
+    <Content Include="Views\Share\AnonymousShare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -552,6 +564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505270653323_addTable-Recoder.resx">
       <DependentUpon>201505270653323_addTable-Recoder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505271056510_addTable-ShareCode.resx">
+      <DependentUpon>201505271056510_addTable-ShareCode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

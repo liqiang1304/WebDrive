@@ -147,6 +147,17 @@ namespace WebDrive.Migrations
             };
             recoder.ForEach(s => context.Recoders.AddOrUpdate(s));
             context.SaveChanges();
+
+            var shareCode = new List<ShareCode>
+            {
+                new ShareCode{
+                    Available = false,
+                    CreateDate = DateTime.Now,
+                    ExpireDate = DateTime.Now,
+                    ShareID = 1,
+                    ValidateString = "0"
+                }
+            };
         }
     }
 }

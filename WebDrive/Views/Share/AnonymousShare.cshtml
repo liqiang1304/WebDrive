@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "AnonymousShare";
+}
+
+@section head{
+    <script type="text/javascript">
+        $(function () {
+            $('#share').on('click', function () {
+                window.location.href = "/Share/CreateShare?userFileID=" + @ViewBag.userFileID + "&anonymous=true";
+            });
+        });
+    </script>
+}
+
+<h2>AnonymousShare</h2>
+
+<div align="center">
+@{
+        <img src="/Content/img/file-big.png" />
+        <label>File name:</label>
+        <p>@ViewBag.fileName</p>
+
+        <input type="button" id="share" value="Share" />
+}
+</div>

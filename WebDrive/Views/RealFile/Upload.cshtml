@@ -15,7 +15,10 @@
                 'multi': false,
                 'uploadLimit': 1,
                 'fileSizeLimit': 0,
-                'onUploadComplete': function () {
+                'onUploadComplete': function (file, data) {
+                    JSONData = JSON.parse(data);
+                    opener.fileName = JSONData.FileName;
+                    opener.userFileID = JSONData.UserFileID;
                     window.close();
                 }
             });

@@ -10,6 +10,7 @@ using WebDrive.ViewModels;
 using WebMatrix.WebData;
 using WebDrive.Manager.QRCode;
 using System.IO;
+using BotDetect.Web.UI.Mvc;
 
 namespace WebDrive.Controllers
 {
@@ -20,26 +21,32 @@ namespace WebDrive.Controllers
         private readonly IShareService _shareService;
         private readonly IUserFileService _userFileService;
         private readonly IRecoderService _recoderService;
+        private readonly IShareCodeService _shareCodeService;
 
-        public ShareController(IShareService shareService, IUserFileService userFileService, IRecoderService recoderService)
+        public ShareController(IShareService shareService, IUserFileService userFileService, IRecoderService recoderService, IShareCodeService shareCodeService)
         {
             this._shareService = shareService;
             this._userFileService = userFileService;
             this._recoderService = recoderService;
+            this._shareCodeService = shareCodeService;
         }
 
         [HttpGet]
-        public ActionResult CreateShare(int userFileID)
+        [AllowAnonymous]
+        public ActionResult CreateShare(int userFileID, bool? anonymous)
         {
             ViewBag.userFileID = userFileID;
+            ViewBag.anonymous = anonymous;
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult CreateShare(ShareModels shareModels, int userFileID)
         {
             int userID = WebSecurity.CurrentUserId;
             UserFile userFile = this._userFileService.GetByID(userFileID);
+            if (userID == -1) userID = 1;
             if (userFile != null) {
                 Share share = this._shareService.CreateShare(shareModels, userFile.RealFileID, userID, userFile.FileName, userFile.FileType);
                 return RedirectToAction("ShowShare", share);
@@ -48,6 +55,7 @@ namespace WebDrive.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult ShowShare(Share share)
         {
             ViewBag.share = share;
@@ -64,6 +72,7 @@ namespace WebDrive.Controllers
             {
                 ViewBag.Password = (share.SharedType & ShareModels.PASSWORDNEED) > 0 ? true : false;
                 ViewBag.codeString = codeString;
+                ViewBag.shareID = share.ShareID;
                 return View();
             }
             return RedirectToAction("index", "home");
@@ -85,7 +94,7 @@ namespace WebDrive.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult ShowShareInfo(string codeString, string password)
+        public ActionResult ShowShareInfo(string codeString, string password, int shareID)
         {
             int userID = WebSecurity.CurrentUserId;
             IResult result = this._shareService.ValidateShare(codeString, userID, password);
@@ -143,6 +152,35 @@ namespace WebDrive.Controllers
                 return File(new FileStream(absolutePath, FileMode.Open), "application/octet-stream", Server.UrlEncode(share.FileName + "." + share.FileType));
             }
             return null;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult GetCodeShare()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [CaptchaValidation("CaptchaCode", "SampleCaptcha", "Incorrect CAPTCHA code!")]
+        public ActionResult GetCodeShare(string shareCode)
+        {
+            if (ModelState.IsValid)
+            {
+                string codeString = this._shareCodeService.GetCodeStringByCode(shareCode);
+                if (codeString != null) return RedirectToAction("GetShare", new { codeString = codeString });
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult AnonymousShare(string fileName, string userFileID)
+        {
+            ViewBag.fileName = fileName;
+            ViewBag.userFileID = userFileID;
+            return View();
         }
     }
 }

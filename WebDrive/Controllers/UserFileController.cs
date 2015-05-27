@@ -128,11 +128,20 @@ namespace WebDrive.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public JsonResult AddExistFile(string fileName, string fileType, int parentID, int realFileID)
         {
             int userID = WebSecurity.CurrentUserId;
+            if (userID == -1) userID = 1;
             IResult result = this._userFileService.NewFile(fileName, fileType, parentID, realFileID, userID);
-            return Json(new { success = result.Success }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = result.Success, FileName = fileName+"."+fileType, UserFileID = result.ReturnInt }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult AnonymousUpload()
+        {
+            return View();
         }
     }
 }

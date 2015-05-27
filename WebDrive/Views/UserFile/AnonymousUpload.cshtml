@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "AnonymousUpload";
+}
+
+@section head{
+    <script type="text/javascript">
+        $(function () {
+            window.currentDir = {
+                currentDirID : 0
+            };
+            window.fileName = null;
+            window.userFileID = null;
+            var childWin;
+            var IfWindowClosed = function () {
+                if (childWin.closed == true) {
+                    window.clearInterval(timer);
+                    console.log("closed");
+                    console.log(window.fileName);
+                    console.log(window.userFileID);
+                    if (window.fileName != null && window.userFileID != null) {
+                        window.location.href = "/Share/AnonymousShare?fileName=" + window.fileName + "&userFileID=" + window.userFileID;
+                    }
+                };
+            };
+
+            $('#upload').on('click', function () {
+                childWin = window.open("/RealFile/Upload", "_blank", "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400")
+                timer = window.setInterval(IfWindowClosed, 500);
+            });
+        });
+    </script>
+}
+
+<h2>Anonymous Upload</h2>
+
+<div align="center">
+    <input type="button" value="Upload" id="upload"/>
+</div>

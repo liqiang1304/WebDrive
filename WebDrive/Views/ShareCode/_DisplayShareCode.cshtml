@@ -1,0 +1,14 @@
+﻿@{
+    string codeString = ViewBag.validateString;
+}
+
+@*@section head{
+    <script type="text/javascript" src="@Url.Content("~/scripts/AjaxRefreshCode.js")"></script>
+}*@
+<br />
+<label>Input following code in other device:</label>
+<input type="text" readonly="value" value="@codeString" id="validationBox">
+<p>If code has expired, please refresh this site.</p>
+@*<input type="button" value="Refresh" id="refreshCode"/>
+<br />
+<span>Please input validation code in </span><span id="countDownSpan"></span><span> second(s).</span>*@

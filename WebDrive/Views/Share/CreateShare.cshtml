@@ -43,11 +43,13 @@
                 @Html.EditorFor(m => m.Password)
             </li>
         </ol>
+        @if(ViewBag.anonymous!=true){
         <ol>
             <li>
                 Is this share private? @Html.EditorFor(m => m.Private)
             </li>
         </ol>
+        }
         <ol>
             <li>
                 Generate QR code? @Html.EditorFor(m => m.QRCode)

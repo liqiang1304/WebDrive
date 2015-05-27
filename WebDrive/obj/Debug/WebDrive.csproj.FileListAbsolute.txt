@@ -113,3 +113,4 @@ C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Deb
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addColumnSharefileNamefileType.resources
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.modifyColumnNameShare.resources
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addTableRecoder.resources
+C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addTableShareCode.resources

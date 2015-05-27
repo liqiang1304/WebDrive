@@ -16,6 +16,9 @@
             <input id="password" name="password" type="text" value="@ViewBag.password" style="display:none">
             <input type="submit" value="Download">  
         }
+        //string path = "~/Views/ShareCode/_DisplayShareCode?shareID=" + ViewBag.share.ShareID;
+        //Html.RenderPartial("~/Views/ShareCode/_DisplayShareCode.cshtml");
+        Html.RenderAction("_DisplayShareCode", "ShareCode", new { shareID = ViewBag.share.ShareID });
     }else{
      <b>Password error or sharing has expired.</b>   
     }

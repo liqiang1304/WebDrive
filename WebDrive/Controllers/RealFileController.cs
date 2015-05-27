@@ -32,6 +32,7 @@ namespace WebDrive.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public JsonResult IsRepeatMD5(string MD5)
         {
             RealFile rf = this._realFileService.FindMD5(MD5);
@@ -42,18 +43,21 @@ namespace WebDrive.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public void PostMD5(string MD5)
         {
             this._MD5 = MD5;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Upload()
         {
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
+        [AllowAnonymous]
         public JsonResult Upload(HttpPostedFileBase fileData, string MD5, int currentDirID)
         {
             int userID = WebSecurity.CurrentUserId;
@@ -70,17 +74,18 @@ namespace WebDrive.Controllers
                     string fileName = Path.GetFileName(fileData.FileName);// 原始文件名称
                     string fileExtension = Path.GetExtension(fileName); // 文件扩展名
                     string fileNameWithOutExtension = Path.GetFileNameWithoutExtension(fileName);
-                    string saveName = Guid.NewGuid().ToString() + fileExtension; // 保存文件名称
+                    string saveName = Guid.NewGuid().ToString(); // 保存文件名称
                     string fileSize = fileData.ContentLength.ToString(); ;
 
                     fileData.SaveAs(filePath + saveName);
                     IResult result = this._realFileService.AddFile(saveName, fileExtension, fileSize, MD5);
                     if (result.Success)
                     {
+                        if (userID == -1) userID = 1;
                         result = this._userFileService.NewFile(fileNameWithOutExtension, fileExtension, currentDirID, result.ReturnInt, userID);
                     }
 
-                    return Json(new { Success = result.Success, FileName = fileName, SaveName = saveName });
+                    return Json(new { Success = result.Success, FileName = fileName, SaveName = saveName, UserFileID = result.ReturnInt});
                 }
                 catch (Exception ex)
                 {

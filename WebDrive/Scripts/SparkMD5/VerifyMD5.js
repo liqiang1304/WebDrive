@@ -100,6 +100,8 @@
                                     if (fileName && fileType) {
                                         $.get(url, data, function (response) {
                                             if (response.success) {
+                                                opener.fileName = response.FileName;
+                                                opener.userFileID = response.UserFileID;
                                                 window.close();
                                             }
                                         });

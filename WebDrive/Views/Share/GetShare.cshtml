@@ -17,7 +17,7 @@
     }
 }
 
-@using (Html.BeginForm("ShowShareInfo", "Share", new { codeString = ViewBag.codeString }, FormMethod.Post))
+@using (Html.BeginForm("ShowShareInfo", "Share", new { codeString = ViewBag.codeString, shareID = ViewBag.shareID }, FormMethod.Post))
 {
         <fieldset>
             <legend>Password input form</legend>
