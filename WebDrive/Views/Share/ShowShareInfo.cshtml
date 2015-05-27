@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "ShowShareInfo";
+}
+
+<h2>ShowShareInfo</h2>
+
+<div align="center">
+@{
+    if(ViewBag.success){
+        <img src="/Content/img/file-big.png" />
+        <label>File name:</label>
+        <p>@ViewBag.share.FileName</p>
+        <label>File type:</label>
+        <p>@ViewBag.share.FileType</p>
+        using(Html.BeginForm("ShareDownload", "Share", new {codeString = ViewBag.codeString, recoderString = ViewBag.recoderString} ,FormMethod.Post)){
+            <input id="password" name="password" type="text" value="@ViewBag.password" style="display:none">
+            <input type="submit" value="Download">  
+        }
+    }else{
+     <b>Password error or sharing has expired.</b>   
+    }
+    
+}
+</div>

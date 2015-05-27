@@ -26,6 +26,8 @@ namespace WebDrive.Models
         public int ExpireCounts { get; set; }
         public bool Private { get; set; }
         public string SharedQRCode { get; set; }
+        public string FileName { get; set; }
+        public string FileType { get; set; }
 
         public virtual UserFile UserFile { get; set; }
         public virtual RealFile RealFile { get; set; }

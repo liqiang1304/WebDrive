@@ -228,6 +228,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QRCodeController.cs" />
     <Compile Include="Controllers\RealFileController.cs" />
+    <Compile Include="Controllers\ShareController.cs" />
     <Compile Include="Controllers\UserFileController.cs" />
     <Compile Include="Controllers\ValidationCodeController.cs" />
     <Compile Include="DAL\Context\WebContext.cs" />
@@ -282,15 +283,29 @@
     <Compile Include="Migrations\201505251443042_addTable-Share.Designer.cs">
       <DependentUpon>201505251443042_addTable-Share.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505270333252_addColumn-Share.fileName.fileType.cs" />
+    <Compile Include="Migrations\201505270333252_addColumn-Share.fileName.fileType.Designer.cs">
+      <DependentUpon>201505270333252_addColumn-Share.fileName.fileType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505270341293_modifyColumnName-Share.cs" />
+    <Compile Include="Migrations\201505270341293_modifyColumnName-Share.Designer.cs">
+      <DependentUpon>201505270341293_modifyColumnName-Share.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505270653323_addTable-Recoder.cs" />
+    <Compile Include="Migrations\201505270653323_addTable-Recoder.Designer.cs">
+      <DependentUpon>201505270653323_addTable-Recoder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\QRCode.cs" />
     <Compile Include="Models\RealFile.cs" />
+    <Compile Include="Models\Recoder.cs" />
     <Compile Include="Models\Share.cs" />
     <Compile Include="Models\UserFile.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Models\ValidationCode.cs" />
     <Compile Include="Service\Interface\IQRCodeService.cs" />
     <Compile Include="Service\Interface\IRealFileService.cs" />
+    <Compile Include="Service\Interface\IRecoderService.cs" />
     <Compile Include="Service\Interface\IResult.cs" />
     <Compile Include="Service\Interface\IShareService.cs" />
     <Compile Include="Service\Interface\IUserFileService.cs" />
@@ -298,6 +313,7 @@
     <Compile Include="Service\Interface\IValidationCodeService.cs" />
     <Compile Include="Service\QRCodeService.cs" />
     <Compile Include="Service\RealFileService.cs" />
+    <Compile Include="Service\RecoderService.cs" />
     <Compile Include="Service\Result.cs" />
     <Compile Include="Service\ShareService.cs" />
     <Compile Include="Service\UserFileService.cs" />
@@ -305,6 +321,7 @@
     <Compile Include="Service\ValidationCodeService.cs" />
     <Compile Include="ViewModels\AccountModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ShareModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -313,6 +330,7 @@
     <Content Include="Content\img\botton_g1.gif" />
     <Content Include="Content\img\botton_g2.gif" />
     <Content Include="Content\img\directory.png" />
+    <Content Include="Content\img\file-big.png" />
     <Content Include="Content\img\file.png" />
     <Content Include="Content\img\furley_bg.png" />
     <Content Include="Content\img\furley_bg_%402X.png" />
@@ -489,6 +507,11 @@
     <Content Include="Scripts\Uploadifive\uploadifive.php" />
     <Content Include="Views\UserFile\index.cshtml" />
     <Content Include="Views\UserFile\FileList.cshtml" />
+    <Content Include="Views\Share\CreateShare.cshtml" />
+    <Content Include="Views\Share\ShowShare.cshtml" />
+    <Content Include="Views\Share\GetShare.cshtml" />
+    <Content Include="Views\Share\ShowShareInfo.cshtml" />
+    <Content Include="Views\Share\GetQRCodeShare.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -520,6 +543,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505251443042_addTable-Share.resx">
       <DependentUpon>201505251443042_addTable-Share.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505270333252_addColumn-Share.fileName.fileType.resx">
+      <DependentUpon>201505270333252_addColumn-Share.fileName.fileType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505270341293_modifyColumnName-Share.resx">
+      <DependentUpon>201505270341293_modifyColumnName-Share.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505270653323_addTable-Recoder.resx">
+      <DependentUpon>201505270653323_addTable-Recoder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

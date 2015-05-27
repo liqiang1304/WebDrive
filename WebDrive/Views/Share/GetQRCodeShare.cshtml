@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "GetQRCodeShare";
+}
+
+<h2>Upload Sharing QR code</h2>
+
+    @using (Html.BeginForm("GetQRCodeShare", "Share", FormMethod.Post,
+        new {enctype = "multipart/form-data"}))
+    {
+            <fieldset>
+                <legend>QR Code Log in Form</legend>
+                @if (TempData["QRCodeMessage"] != null)
+                {
+                    <p>@TempData["QRCodeMessage"]</p>
+                }
+                <ol>
+                    <li>
+                        <label for="file">Upload QR Code</label>
+                    </li>
+                    <li>
+                        <input type="file" name="file" id="file" accept="image/*"/>
+                    </li>
+                </ol>
+                <input type="submit" value="Upload" />
+            </fieldset>
+        
+    }

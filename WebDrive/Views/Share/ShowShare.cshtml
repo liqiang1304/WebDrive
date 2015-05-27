@@ -1,0 +1,45 @@
+﻿@using WebDrive.Models;
+@using WebDrive.ViewModels;
+
+@{
+    ViewBag.Title = "ShowShare";
+}
+
+<h2>Share Success</h2>
+<br />
+@{
+    if ((ViewBag.share.SharedType & ShareModels.QRCODENEED) > 0)
+    {
+        <b>Copy QR code below to share:</b>
+        Html.RenderPartial("~/Views/QRCode/_QRCodeDisplay.cshtml");
+    }else{
+        string host = "http://localhost:53222";
+        string path = host + "/Share/GetShare?codeString=" + ViewBag.codeString;
+        <b>Copy url below to share:</b>
+        <p>@path</p>
+    
+    }
+    <br/>
+    if ((ViewBag.share.SharedType & ShareModels.DATENEED) > 0)
+    {
+        <b>This sharing will expire at:</b>
+        @ViewBag.share.ExpireDate.ToString("yyyy-MM-dd HH:mm:ss");
+    }
+    <br/>
+    if ((ViewBag.share.SharedType & ShareModels.DOWNLOADNEED) > 0)
+    {
+        <b>This sharing download times will expire in:</b>
+        @ViewBag.share.ExpireCounts
+    }
+    <br/>
+    if ((ViewBag.share.SharedType & ShareModels.PASSWORDNEED) > 0)
+    {
+        <b>This sharing has password:</b>
+        @ViewBag.share.Password
+    }
+    <br/>
+    if ((ViewBag.share.SharedType & ShareModels.PRIVATENEED) > 0)
+    {
+        <b>This sharing is private.</b>
+    }
+}

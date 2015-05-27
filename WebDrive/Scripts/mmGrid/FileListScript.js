@@ -37,6 +37,15 @@
                     return '<button  class="btn btn-info">Download</button> <button  class="btn btn-danger">Rename</button>'
                 }
             }
+        },
+        {
+            title: 'Sharing', name: '', width: 50, align: 'center', lockWidth: true, lockDisplay: true, renderer: function (val, item, rowIndex) {
+                if (!item.Directory) {
+                    return '<a class=".text-primary" href="/Share/CreateShare?userFileID=' + item.UserFileID + '" class="">Share</a>';
+                } else {
+                    return '<p class=".text-muted">Share</p>';
+                }
+            }
         }
     ];
 

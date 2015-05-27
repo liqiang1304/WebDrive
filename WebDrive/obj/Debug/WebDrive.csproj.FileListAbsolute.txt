@@ -110,3 +110,6 @@ C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Deb
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addMD5RealFile.resources
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addUserFile.resources
 C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addTableShare.resources
+C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addColumnSharefileNamefileType.resources
+C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.modifyColumnNameShare.resources
+C:\Users\Richard\documents\visual studio 2012\Projects\WebDrive\WebDrive\obj\Debug\WebDrive.Migrations.addTableRecoder.resources

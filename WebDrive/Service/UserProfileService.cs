@@ -25,7 +25,7 @@ namespace WebDrive.Service
 
         public UserProfile GetByUsername(string username)
         {
-            return this._repository.Get(x => x.UserName == username, null, null).Single();
+            return this._repository.Get(x => x.UserName == username, null, null).SingleOrDefault();
         }
 
         public IEnumerable<UserProfile> GetAll()
@@ -35,7 +35,7 @@ namespace WebDrive.Service
 
         public UserProfile GetUserByQRCode(string codeString)
         {
-            return this._repository.Get(x => x.QRCode.CodeString == codeString, null, null).Single();
+            return this._repository.Get(x => x.QRCode.CodeString == codeString, null, null).SingleOrDefault();
         }
 
         public IResult AddLoginCount(string username)
@@ -62,6 +62,7 @@ namespace WebDrive.Service
             if (file == null) return result;
             QRCodeManager qrCodeManager = new QRCodeManager();
             UserProfile user = qrCodeManager.ProcessCodeImage(this, file);
+            if (user == null) return result;
 
             AccountSecurity account = new AccountSecurity(user);
             if (account.ValidateAll())

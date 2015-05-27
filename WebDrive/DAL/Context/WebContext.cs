@@ -16,6 +16,7 @@ namespace WebDrive.DAL.Context
         public DbSet<RealFile> RealFiles { get; set; }
         public DbSet<UserFile> UserFiles { get; set; }
         public DbSet<Share> Shares { get; set; }
+        public DbSet<Recoder> Recoders { get; set; }
 
         public WebContext()
         {

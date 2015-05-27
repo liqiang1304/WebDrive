@@ -115,6 +115,8 @@ namespace WebDrive.Migrations
                     DownloadCounts = 0,
                     Private = false,
                     SharedQRCode = "0",
+                    FileName = "test1",
+                    FileType = "txt"
                 },
                 new Share{
                     UserID = 29,
@@ -127,9 +129,23 @@ namespace WebDrive.Migrations
                     DownloadCounts = 0,
                     Private = false,
                     SharedQRCode = "0",
+                    FileName = "test2",
+                    FileType = "txt"
                 }
             };
             share.ForEach(s => context.Shares.AddOrUpdate(s));
+            context.SaveChanges();
+
+            var recoder = new List<Recoder>
+            {
+                new Recoder{
+                    RecoderString = "0",
+                    CreateDate = DateTime.Now,
+                    ExpireTime = DateTime.Now,
+                    Available = false
+                }
+            };
+            recoder.ForEach(s => context.Recoders.AddOrUpdate(s));
             context.SaveChanges();
         }
     }

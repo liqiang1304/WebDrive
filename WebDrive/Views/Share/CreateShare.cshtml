@@ -1,0 +1,58 @@
+﻿@model WebDrive.ViewModels.ShareModels
+@{
+    ViewBag.Title = "CreateShare";
+}
+
+<h2>CreateShare</h2>
+
+@using (Html.BeginForm(new { userFileID = ViewBag.userFileID }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Share Authorization</legend>
+        <ol>
+            <li>
+                Expire date limited? @Html.EditorFor(m => m.DateLimit)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ExpirenDate)
+                @Html.EditorFor(m => m.ExpirenDate)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ExpireTime)
+                @Html.EditorFor(m => m.ExpireTime)
+            </li>
+        </ol>
+        <ol>
+            <li>
+                Download count limited? @Html.EditorFor(m => m.DownloadLimit)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ExpireCounts)
+                @Html.EditorFor(m => m.ExpireCounts)
+            </li>
+        </ol>
+        <ol>
+            <li>
+                Password needed? @Html.EditorFor(m => m.PasswordNeed)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.EditorFor(m => m.Password)
+            </li>
+        </ol>
+        <ol>
+            <li>
+                Is this share private? @Html.EditorFor(m => m.Private)
+            </li>
+        </ol>
+        <ol>
+            <li>
+                Generate QR code? @Html.EditorFor(m => m.QRCode)
+            </li>
+        </ol>
+        <input type="submit" value="Create"/>
+    </fieldset>
+}

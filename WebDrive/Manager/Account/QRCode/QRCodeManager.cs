@@ -23,7 +23,8 @@ namespace WebDrive.Manager.QRCode
         {
         }
 
-        public UserProfile ProcessCodeImage(IUserProfileService userProfileService, HttpPostedFileBase file){
+        /*
+         public UserProfile ProcessCodeImage(IUserProfileService userProfileService, HttpPostedFileBase file){
             if (file != null)
             {
                 try
@@ -59,6 +60,13 @@ namespace WebDrive.Manager.QRCode
             }
             return null;
         }
+         */
+        public UserProfile ProcessCodeImage(IUserProfileService userProfileService, HttpPostedFileBase file)
+        {
+            string decodeString = GetCodeString(file);
+            UserProfile user = userProfileService.GetUserByQRCode(decodeString);
+            return user;
+        }
 
         public MemoryStream GenerateQRCodeImage(string codeString, int height = 300, int width = 300)
         {
@@ -92,6 +100,43 @@ namespace WebDrive.Manager.QRCode
                 Available = true
             };
             return insertCode;
+        }
+
+        public string GetCodeString(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                try
+                {
+
+                    string pic = System.IO.Path.GetFileName(file.FileName);
+                    StringGenerator randomName = new StringGenerator();
+                    pic = randomName.Refresh(StringGenerator.FILENAME_TYPE, 10) + pic;
+                    string path = System.IO.Path.Combine(HttpContext.Current.Server.MapPath("~/QRCodeCache/"), pic);
+
+                    file.SaveAs(path);
+
+                    IBarcodeReader reader = new BarcodeReader();
+                    var barcodeBitmap = (Bitmap)Bitmap.FromFile(path);
+                    var result = reader.Decode(barcodeBitmap);
+                    barcodeBitmap.Dispose();
+                    if (result != null)
+                    {
+                        string decodeString = result.Text;
+                        System.IO.File.Delete(path);
+                        return decodeString;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch (Exception e)
+                {
+                    System.Console.WriteLine(e);
+                }
+            }
+            return null;
         }
     }
 }
