@@ -107,7 +107,7 @@ namespace WebDrive.Controllers
             if (userFile != null && userFile.UserID == userID)
             {
                 string absolutePath = Server.MapPath("~/UploadCache/" + userFile.RealFile.FileName);
-                return File(new FileStream(absolutePath, FileMode.Open), "application/octet-stream", Server.UrlEncode(userFile.FileName + "." + userFile.FileType));
+                return File(new FileStream(absolutePath, FileMode.Open), "application/octet-stream", Server.UrlEncode(userFile.FileName + userFile.FileType));
             }
             return null;
         }

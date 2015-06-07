@@ -81,15 +81,15 @@ namespace WebDrive.Models
 
     public class AnonymousRegisterModel
     {
-        [Display(Name = "账户过期日期")]
+        [Display(Name = "Account expire date")]
         [DataType(DataType.Date)]
         public DateTime ExpireLoginDate { get; set; }
 
-        [Display(Name = "账户过期时间")]
+        [Display(Name = "Account expire time")]
         [DataType(DataType.Time)]
         public DateTime ExpireLoginTime { get; set; }
 
-        [Display(Name = "登录次数限制")]
+        [Display(Name = "Account expire login count")]
         [DataType(DataType.Text)]
         public int ExpireLoginCounts { get; set; }
 

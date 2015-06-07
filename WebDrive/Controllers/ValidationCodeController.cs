@@ -35,7 +35,7 @@ namespace WebDrive.Controllers
             {
                 ViewBag.validationString = result.Message;
             }
-            return View();
+            return PartialView();
         }
 
         [HttpGet]

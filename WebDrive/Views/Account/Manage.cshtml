@@ -3,28 +3,31 @@
     ViewBag.Title = "Manage Account";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+<section id="loginForm">
+    <hgroup class="title">
+        <h1>@ViewBag.Title.</h1>
+    </hgroup>
 
-<p class="message-success">@ViewBag.StatusMessage</p>
+    <p class="message-success">@ViewBag.StatusMessage</p>
 
-<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+    <p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
 
-@if (ViewBag.HasLocalPassword)
-{
-    @Html.Partial("_ChangePasswordPartial")
-}
-else
-{ 
-    @Html.Partial("_SetPasswordPartial")
-}
+    @if (ViewBag.HasLocalPassword)
+    {
+        @Html.Partial("_ChangePasswordPartial")
+    }
+    else
+    { 
+        @Html.Partial("_SetPasswordPartial")
+    }
 
-<section id="externalLogins">
-    @Html.Action("RemoveExternalLogins")
+</section>
 
-    <h3>Add an external login</h3>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+<section id="socialLoginForm">
+    @{
+        //Html.RenderPartial("~/Views/ValidationCode/_CodeDisplay.cshtml");
+        Html.RenderAction("_CodeDisplay", "ValidationCode");
+    }
 </section>
 
 @section Scripts {

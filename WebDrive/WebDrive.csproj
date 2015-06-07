@@ -343,12 +343,18 @@
     <Content Include="Content\img\furley_bg.png" />
     <Content Include="Content\img\furley_bg_%402X.png" />
     <Content Include="Content\img\loading.gif" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\low_contrast_linen.png" />
     <Content Include="Content\img\low_contrast_linen_%402X.png" />
     <Content Include="Content\img\pw_maze_white.png" />
     <Content Include="Content\img\pw_maze_white_%402X.png" />
+    <Content Include="Content\img\slider1.png" />
+    <Content Include="Content\img\slider2.png" />
     <Content Include="Content\img\sort-asc.png" />
     <Content Include="Content\img\sort-desc.png" />
+    <Content Include="Content\img\urls.jpg" />
+    <Content Include="Content\img\wood.jpg" />
+    <Content Include="Content\IndexStyle.css" />
     <Content Include="Content\mmGrid-bootstrap.css" />
     <Content Include="Content\mmGrid.css" />
     <Content Include="Content\mmPaginator-bootstrap.css" />
@@ -433,6 +439,7 @@
     <Content Include="Scripts\mmGrid\mmPaginator.js" />
     <Content Include="Scripts\mmGrid\plugins.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\slider\unslider.min.js" />
     <Content Include="Scripts\SparkMD5\spark-md5.js" />
     <Content Include="Scripts\SparkMD5\spark-md5.min.js" />
     <Content Include="Scripts\SparkMD5\VerifyMD5.js" />
@@ -493,7 +500,7 @@
     <Content Include="Views\Account\AnonymousRegister.cshtml" />
     <Content Include="Views\QRCode\_QRCodeDisplay.cshtml" />
     <Content Include="Views\Account\GetAonymousQRCode.cshtml" />
-    <Content Include="Views\ValidationCode\_CodeDisplay.cshtml" />
+    <Content Include="Views\ValidationCode\_CodeDisplay1.cshtml" />
     <Content Include="Scripts\uploadify\check-exists.php" />
     <Content Include="Scripts\uploadify\index.php" />
     <Content Include="Scripts\uploadify\uploadify.php" />
@@ -524,6 +531,7 @@
     <Content Include="Views\Share\GetCodeShare.cshtml" />
     <Content Include="Views\UserFile\AnonymousUpload.cshtml" />
     <Content Include="Views\Share\AnonymousShare.cshtml" />
+    <Content Include="Views\ValidationCode\_CodeDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

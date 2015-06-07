@@ -149,7 +149,7 @@ namespace WebDrive.Controllers
             if (share != null && result.Success)
             {
                 string absolutePath = Server.MapPath("~/UploadCache/" + share.RealFile.FileName);
-                return File(new FileStream(absolutePath, FileMode.Open), "application/octet-stream", Server.UrlEncode(share.FileName + "." + share.FileType));
+                return File(new FileStream(absolutePath, FileMode.Open), "application/octet-stream", Server.UrlEncode(share.FileName + share.FileType));
             }
             return null;
         }

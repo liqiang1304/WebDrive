@@ -185,7 +185,7 @@
         
         $.get(url, data, function (response) {
             if (response.success) {
-                mmg.load({ ParentID: response.ParentDirID });
+                mmg.load({ ParentID: window.currentDir.currentDirID });
             } else {
                 alert("Delete failed!");
             }
@@ -213,12 +213,15 @@
         if (childWin.closed == true) {
             window.clearInterval(timer);
             mmg.load({ ParentID: window.currentDir.currentDirID });
+            childWin = null;
         };
     };
 
     $('#btnUpload').on('click', function () {
-        childWin = window.open("/RealFile/Upload", "_blank", "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400")
-        timer = window.setInterval(IfWindowClosed, 500);
+        if (childWin == null) {
+            childWin = window.open("/RealFile/Upload", "_blank", "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400")
+            timer = window.setInterval(IfWindowClosed, 500);
+        }
     });
 
 });

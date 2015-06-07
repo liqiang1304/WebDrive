@@ -5,6 +5,7 @@
             @Html.AntiForgeryToken()
             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
         }
+        @Html.ActionLink("User File", "FileList", "UserFile")
     </text>
 } else {
     <ul>

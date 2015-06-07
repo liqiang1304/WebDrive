@@ -20,12 +20,15 @@
                     if (window.fileName != null && window.userFileID != null) {
                         window.location.href = "/Share/AnonymousShare?fileName=" + window.fileName + "&userFileID=" + window.userFileID;
                     }
+                    childWin = null;
                 };
             };
 
             $('#upload').on('click', function () {
-                childWin = window.open("/RealFile/Upload", "_blank", "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400")
-                timer = window.setInterval(IfWindowClosed, 500);
+                if (childWin == null) {
+                    childWin = window.open("/RealFile/Upload", "_blank", "toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=400, height=400")
+                    timer = window.setInterval(IfWindowClosed, 500);
+                }
             });
         });
     </script>
