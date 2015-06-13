@@ -93,6 +93,9 @@ namespace WebDrive.Models
         [DataType(DataType.Text)]
         public int ExpireLoginCounts { get; set; }
 
+        public bool ExpireTimeNeed { get; set; }
+        public bool ExpireCountNeed { get; set; }
+
         public DateTime ExpireLoginDateTime
         {
             get

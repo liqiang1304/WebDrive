@@ -3,6 +3,41 @@
     ViewBag.Title = "AnonymousRegister";
 }
 
+@section head{
+    <script type="text/javascript">
+        $(function () {
+            if ($('#ExpireTimeNeed').attr('checked') != 'checked') {
+                $('#ExpireLoginDate').attr('disabled', 'disabled');
+                $('#ExpireLoginTime').attr('disabled', 'disabled');
+            }
+            if ($('#ExpireCountNeed').attr('checked') != 'checked') {
+                $('#ExpireLoginCounts').attr('disabled', 'disabled');
+            }
+
+            $('#ExpireTimeNeed').click(function () {
+                if ($(this).attr('checked') == 'checked') {
+                    $('#ExpireLoginDate').removeAttr('disabled');
+                    $('#ExpireLoginTime').removeAttr('disabled');
+                } else {
+                    $('#ExpireLoginDate').attr('disabled', 'disabled');
+                    $('#ExpireLoginDate').val('');
+                    $('#ExpireLoginTime').attr('disabled', 'disabled');
+                    $('#ExpireLoginTime').val('');
+                }
+            });
+
+            $('#ExpireCountNeed').click(function () {
+                if ($(this).attr('checked') == 'checked') {
+                    $('#ExpireLoginCounts').removeAttr('disabled');
+                } else {
+                    $('#ExpireLoginCounts').attr('disabled', 'disabled');
+                    $('#ExpireLoginCounts').val('');
+                }
+            });
+        });
+    </script>
+
+}
 
 <hgroup class="title">
     <h1>Register New Anonymous User</h1>
@@ -16,12 +51,20 @@
         <legend>Registration Form</legend>
         <ol>
             <li>
+                Expire Time Limited? @Html.EditorFor(m => m.ExpireTimeNeed)
+            </li>
+            <li>
                 @Html.LabelFor(m => m.ExpireLoginDate)
                 @Html.EditorFor(m => m.ExpireLoginDate)
             </li>
             <li>
                 @Html.LabelFor(m => m.ExpireLoginTime)
                 @Html.EditorFor(m => m.ExpireLoginTime)
+            </li>
+        </ol>
+        <ol>
+            <li>
+                Expire Download Counts Limited? @Html.EditorFor(m => m.ExpireCountNeed)
             </li>
             <li>
                 @Html.LabelFor(m => m.ExpireLoginCounts)

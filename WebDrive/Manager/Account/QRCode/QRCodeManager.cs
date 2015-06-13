@@ -14,6 +14,7 @@ using ZXing.QrCode;
 using System.Web.Mvc;
 using WebDrive.Manager.Account;
 using WebDrive.Models;
+using System.Drawing.Imaging;
 
 namespace WebDrive.Manager.QRCode
 {
@@ -113,13 +114,15 @@ namespace WebDrive.Manager.QRCode
                     StringGenerator randomName = new StringGenerator();
                     pic = randomName.Refresh(StringGenerator.FILENAME_TYPE, 10) + pic;
                     string path = System.IO.Path.Combine(HttpContext.Current.Server.MapPath("~/QRCodeCache/"), pic);
-
+                    string path1 = System.IO.Path.Combine(HttpContext.Current.Server.MapPath("~/QRCodeCache/Gray"), pic);
                     file.SaveAs(path);
 
-                    IBarcodeReader reader = new BarcodeReader();
+                    IBarcodeReader reader = new BarcodeReader() { AutoRotate = true, TryHarder = true };
                     var barcodeBitmap = (Bitmap)Bitmap.FromFile(path);
-                    var result = reader.Decode(barcodeBitmap);
+                    var grayBitmap = Gray(barcodeBitmap);
+                    var result = reader.Decode(grayBitmap);
                     barcodeBitmap.Dispose();
+
                     if (result != null)
                     {
                         string decodeString = result.Text;
@@ -138,5 +141,32 @@ namespace WebDrive.Manager.QRCode
             }
             return null;
         }
+
+        public Bitmap Gray(Bitmap b)
+        {
+            BitmapData bmData = b.LockBits(new Rectangle(0, 0, b.Width, b.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+            int stride = bmData.Stride;
+            System.IntPtr Scan0 = bmData.Scan0;
+            unsafe
+            {
+                byte* p = (byte*)(void*)Scan0;
+                int nOffset = stride - b.Width * 3;
+                byte red, green, blue;
+                for (int y = 0; y < b.Height; ++y)
+                {
+                    for (int x = 0; x < b.Width; ++x)
+                    {
+                        blue = p[0];
+                        green = p[1];
+                        red = p[2];
+                        p[0] = p[1] = p[2] = (byte)(.3333 * red + .3333 * green + .3333 * blue);
+                        p += 3;
+                    }
+                    p += nOffset;
+                }
+            }
+            b.UnlockBits(bmData);
+            return b;
+        }  
     }
 }

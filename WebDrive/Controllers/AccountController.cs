@@ -173,6 +173,17 @@ namespace WebDrive.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
+                if((model.ExpireCountNeed || model.ExpireTimeNeed) == false){
+                    return View(model);
+                }else{
+                    if (model.ExpireTimeNeed && DateTime.Compare(DateTime.Now, model.ExpireLoginDateTime) >= 0) return View(model);
+                    if (model.ExpireCountNeed && model.ExpireLoginCounts <= 0) return View(model);
+                    if (model.ExpireTimeNeed == false)
+                    {
+                        model.ExpireLoginDate = DateTime.Parse("1900-01-01");
+                        model.ExpireLoginTime = DateTime.Parse("00:00");
+                    }
+                }
                 try
                 {
                     UserInfoManager userInfo = new UserInfoManager();

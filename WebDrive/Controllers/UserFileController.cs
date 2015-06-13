@@ -128,6 +128,33 @@ namespace WebDrive.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetAllFileByType(string fileType)
+        {
+            int userID = WebSecurity.CurrentUserId;
+            List<UserFile> userFiles = this._userFileService.GetAllFileByType(fileType, userID);
+            var JsonObj = new object[userFiles.Count + 1];
+            for (int i = 0; i < userFiles.Count; ++i)
+            {
+                JsonObj[i] = new
+                {
+                    FileName = userFiles[i].FileName,
+                    CreateDate = userFiles[i].CreateDate.ToUniversalTime().ToString("yyyy-MM-dd HH:mm"),
+                    FileSize = userFiles[i].Directory ? 0 : int.Parse(userFiles[i].RealFile.FileSize),
+                    UserFileID = userFiles[i].UserFileID,
+                    ParentFileID = userFiles[i].ParentFileID,
+                    Directory = userFiles[i].Directory,
+                    FileType = userFiles[i].FileType
+                };
+            }
+            JsonObj[userFiles.Count] = new
+            {
+                currentDirID = 0,
+                currentParentID = 0
+            };
+            return Json(JsonObj, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         [AllowAnonymous]
         public JsonResult AddExistFile(string fileName, string fileType, int parentID, int realFileID)
         {

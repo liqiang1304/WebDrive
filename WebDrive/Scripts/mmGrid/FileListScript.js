@@ -50,7 +50,7 @@
     ];
 
     var mmg = $('.mmg').mmGrid({
-        height: 400
+        height: 500
         , cols: cols
         , url: '/UserFile/GetUserDir'
         , method: 'get'
@@ -88,6 +88,7 @@
             //alert(JSON.stringify(item));
             if (item.Directory) {
                 mmg.load({ ParentID: item.UserFileID });
+                enableAllCtrlBtn();
             } else {
                 var url = '/RealFile/DownloadFile';
                 var data = {
@@ -151,6 +152,7 @@
         };
         $.get(url, data, function (response) {
             mmg.load({ ParentID: response.ParentDirID });
+            enableAllCtrlBtn();
         });
     });
 
@@ -205,6 +207,7 @@
         $.get(url, data, function (response) {
             mmg.load(response);
             console.log(response);
+            disableAllCtrlBtn(false);
         });
     });
 
@@ -223,5 +226,95 @@
             timer = window.setInterval(IfWindowClosed, 500);
         }
     });
+
+    var disableAllCtrlBtn = function (disableUpBtn) {
+        if (disableUpBtn) {
+            $('#btnUp').attr('disabled', 'disabled');
+        }
+        $('#btnNewDir').attr('disabled', 'disabled');
+        $('#btnDel').attr('disabled', 'disabled');
+        $('#btnUpload').attr('disabled', 'disabled');
+        $('#secucode').attr('disabled', 'disabled');
+        $('#btnSearch').attr('disabled', 'disabled');
+    };
+
+    var enableAllCtrlBtn = function () {
+        $('#btnUp').removeAttr('disabled');
+        $('#btnNewDir').removeAttr('disabled');
+        $('#btnDel').removeAttr('disabled');
+        $('#btnUpload').removeAttr('disabled');
+        $('#secucode').removeAttr('disabled');
+        $('#btnSearch').removeAttr('disabled');
+    };
+
+    var leftBtn = ['AllFiles', 'Pictures', 'Documents', 'Videos', 'Torrents', 'Musics', 'Others'];
+
+    var leftBtnID = function (name) {
+        return "#" + name;
+    };
+
+    var clearAllSelected = function () {
+        for (var i = 0; i < leftBtn.length; ++i) {
+            $(leftBtnID(leftBtn[i])).removeClass('active');
+        }
+    };
+
+    for (var i = 0; i < leftBtn.length; ++i) {
+        $(leftBtnID(leftBtn[i])).on('click', function () {
+            clearAllSelected();
+            $(this).addClass('active');
+            if (this.id == "AllFiles") {
+                enableAllCtrlBtn();
+                mmg.load({ ParentID: window.currentDir.currentDirID });
+            } else {
+                var url = "/UserFile/GetAllFileByType";
+                var data = {
+                    fileType: this.id,
+                };
+                $.get(url, data, function (response) {
+                    mmg.load(response);
+                    disableAllCtrlBtn(true);
+                });
+            }
+        });
+    };
+
+    //$('#AllFiles').on('click', function () {
+    //    clearAllSelected();
+    //    $(this).addClass('active');
+    //});
+
+
+    //$('#Pictures').on('click', function () {
+    //    clearAllSelected();
+    //    $(this).addClass('active');
+    //});
+
+    //$('#Documents').on('click', function () {
+    //    clearAllSelected();
+    //    $(this).addClass('active');
+    //});
+
+    //$('#Videos').on('click', function () {
+    //    clearAllSelected();
+    //    $(this).addClass('active');
+    //});
+
+    //$('#Torrents').on('click', function () {
+    //    clearAllSelected();
+    //    $(this).addClass('active');
+    //});
+
+    //$('#Musics').on('click', function () {
+    //    clearAllSelected();
+    //    $(this).addClass('active');
+    //});
+
+    //$('#Others').on('click', function () {
+    //    clearAllSelected();
+    //    $(this).addClass('active');
+    //});
+
+    
 
 });

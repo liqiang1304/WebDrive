@@ -32,7 +32,7 @@ namespace WebDrive.ViewModels
         [DataType(DataType.Text)]
         public string Password { get; set; }
 
-        [Display(Name = "share expire download counts")]
+        [Display(Name = "Share expire download counts")]
         [DataType(DataType.Text)]
         public int ExpireCounts { get; set; }
 

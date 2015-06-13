@@ -24,5 +24,7 @@ namespace WebDrive.DAL.Repository
         IQueryable<TEntity> GetAll();
 
         IEnumerable<TEntity> GetWithRawSql(string query, params object[] parameters);
+
+        IEnumerable<TEntity> WhereOrLike(Expression<Func<TEntity, string>> valueSelector, IEnumerable<string> values);
     }
 }

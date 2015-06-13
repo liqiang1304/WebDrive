@@ -26,5 +26,7 @@ namespace WebDrive.Service.Interface
         List<UserFile> Search(string searchName, int userID);
 
         UserFile GetByID(int userFileID);
+
+        List<UserFile> GetAllFileByType(string fileType, int userID);
     }
 }

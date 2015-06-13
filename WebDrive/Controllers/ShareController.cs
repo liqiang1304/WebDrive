@@ -44,6 +44,25 @@ namespace WebDrive.Controllers
         [AllowAnonymous]
         public ActionResult CreateShare(ShareModels shareModels, int userFileID)
         {
+            ViewBag.userFileID = userFileID;
+            if (shareModels.DateLimit)
+            {
+                if (DateTime.Compare(shareModels.ExpireLoginDateTime, DateTime.Now) <= 0)
+                {
+                    return View();
+                }
+            }
+            if (shareModels.DownloadLimit)
+            {
+                if (shareModels.ExpireCounts <= 0) return View();
+            }
+            if (shareModels.PasswordNeed)
+            {
+                if (shareModels.Password == null)
+                {
+                    return View();
+                }
+            }
             int userID = WebSecurity.CurrentUserId;
             UserFile userFile = this._userFileService.GetByID(userFileID);
             if (userID == -1) userID = 1;
@@ -51,7 +70,7 @@ namespace WebDrive.Controllers
                 Share share = this._shareService.CreateShare(shareModels, userFile.RealFileID, userID, userFile.FileName, userFile.FileType);
                 return RedirectToAction("ShowShare", share);
             }
-            return View();
+            return View(new {userFileID = userFileID});
         }
 
         [HttpGet]

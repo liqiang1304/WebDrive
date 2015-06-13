@@ -17,7 +17,6 @@
         });
     </script>
     <link rel="stylesheet" href="/Content/IndexStyle.css">
-
 }
 
 @section featured {
@@ -60,11 +59,17 @@
     <a class="btn" href="@Url.Action("GetCodeShare","Share")">Validation Code</a>
     <br />
     <br />
+    <h3>Upload and share files without register!</h3>
+    <a class="btn" href="@Url.Action("AnonymousUpload","UserFile")">UPLOAD</a>
+    <br />
+    <br />
 </div>
 
 @section introduction{
     <div id="features" class="features">
         <section class="content-wrapper clear-fix">
+            <h2>Features:</h2>
+            <br />
             <ul class="wrap">
                 <li class="responsive">
                     <b>Fast</b>
@@ -83,7 +88,8 @@
     </div>
     <div id="options" class="options">
         <section class="content-wrapper clear-fix">
-            <p> test </p>
+            <h2>How to upload:</h2>
+            <img src="/Content/img/workflow1.png" height="365px"/>
         </section>
     </div>
 }

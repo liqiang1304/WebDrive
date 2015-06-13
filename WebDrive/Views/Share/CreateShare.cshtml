@@ -3,6 +3,53 @@
     ViewBag.Title = "CreateShare";
 }
 
+@section head{
+    <script type="text/javascript">
+        $(function () {
+            if ($('#DateLimit').attr('checked') != 'checked') {
+                $('#ExpirenDate').attr('disabled', 'disabled');
+                $('#ExpireTime').attr('disabled', 'disabled');
+            }
+            if ($('#DownloadLimit').attr('checked') != 'checked') {
+                $('#ExpireCounts').attr('disabled', 'disabled');
+            }
+            if ($('#PasswordNeed').attr('checked') != 'checked') {
+                $('#Password').attr('disabled', 'disabled');
+            }
+
+            $('#DateLimit').click(function () {
+                if ($(this).attr('checked') == 'checked') {
+                    $('#ExpirenDate').removeAttr('disabled');
+                    $('#ExpireTime').removeAttr('disabled');
+                } else {
+                    $('#ExpirenDate').attr('disabled', 'disabled');
+                    $('#ExpirenDate').val('');
+                    $('#ExpireTime').attr('disabled', 'disabled');
+                    $('#ExpireTime').val('');
+                }
+            });
+
+            $('#DownloadLimit').click(function () {
+                if ($(this).attr('checked') == 'checked') {
+                    $('#ExpireCounts').removeAttr('disabled');
+                } else {
+                    $('#ExpireCounts').attr('disabled', 'disabled');
+                    $('#ExpireCounts').val('');
+                }
+            });
+
+            $('#PasswordNeed').click(function () {
+                if ($(this).attr('checked') == 'checked') {
+                    $('#Password').removeAttr('disabled');
+                } else {
+                    $('#Password').attr('disabled', 'disabled');
+                    $('#Password').val('');
+                }
+            });
+        });
+    </script>
+}
+
 <h2>CreateShare</h2>
 
 @using (Html.BeginForm(new { userFileID = ViewBag.userFileID }))

@@ -6,6 +6,7 @@ using WebDrive.Service.Interface;
 using WebDrive.DAL.UnitOfWork;
 using WebDrive.DAL.Repository;
 using WebDrive.Models;
+using System.Text.RegularExpressions;
 
 namespace WebDrive.Service
 {
@@ -167,7 +168,34 @@ namespace WebDrive.Service
 
         public List<UserFile> Search(string searchName, int userID)
         {
-            List<UserFile> userFiles = this._repository.Get(x => x.FileName.Contains(searchName), null, null).ToList();
+            List<UserFile> userFiles = this._repository.Get(x => (x.FileName.Contains(searchName) && x.UserID == userID), null, null).ToList();
+            return userFiles;
+        }
+
+        public List<UserFile> GetAllFileByType(string fileType, int userID)
+        {
+            var pattern = new string[]{};
+            switch (fileType)
+            {
+                case "Pictures":
+                    pattern = new string[] { ".jpg", ".jpeg", ".bmp", ".png", ".tif", ".tiff", ".cdr", ".pcd", ".psd", ".tga" };
+                    break;
+                case "Documents":
+                    pattern = new string[] { ".txt", ".wps", ".doc", ".rtf", "ppt", ".docx", ".pptx", ".html", ".pdf", ".xls", ".xlsx" };
+                    break;
+                case "Videos":
+                    pattern = new string[] { ".avi", ".rmvb", ".rm", ".asf", ".divx", ".mpg", ".mpeg", ".wmv", ".mp4", ".mkv", ".vob", ".flv" };
+                    break;
+                case "Torrents":
+                    pattern = new string[] { ".torrent" };
+                    break;
+                case "Musics":
+                    pattern = new string[] {".aiff", ".ape", ".mp3", ".mp1", ".mp2", ".wma", ".aac", ".ogg", ".wave", ".ape", ".flac"};
+                    break;
+
+            }
+
+            List<UserFile> userFiles = this._repository.Get(x => (pattern.Contains(x.FileType) && x.UserID == userID), null, null).ToList();
             return userFiles;
         }
 

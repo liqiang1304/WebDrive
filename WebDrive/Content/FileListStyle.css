@@ -1,0 +1,507 @@
+﻿
+#yao-main {
+    float: right;
+    margin-left: -210px;
+    width: 100%
+}
+
+#yao-main .yao-b {
+    float: none;
+    width: auto;
+    margin-left: 210px
+}
+
+.yao-b {
+    float: left;
+    width: 150px;
+    margin-top: 25px;
+}
+
+.module-aside {
+    padding-top: 10px;
+    height: 1000px;
+    position: relative
+}
+
+.module-aside a:hover,.module-aside a:active {
+    text-decoration: none
+}
+
+.module-aside .b-list-3 a {
+    display: block;
+    height: 31px;
+    line-height: 31px;
+    padding: 1px 0;
+    font-size: 14px;
+    text-decoration: none;
+    zoom:1;color: #333;
+    margin: 3px 0
+}
+
+.module-aside .b-list-3 a:hover {
+    height: 31px;
+    line-height: 31px;
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/images/clouddisk-ui/aside-hover-on.png?t=1433742597224) right top repeat-y;
+    text-decoration: none
+}
+
+.module-aside .b-list-3 .active a {
+    height: 31px;
+    line-height: 31px;
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/images/clouddisk-ui/aside-hover-on.png?t=1433742597224) 0 33px repeat-y;
+    _text-decoration: none
+}
+
+.module-aside .b-list-3 a .text1 {
+    position: relative;
+    display: block;
+    height: 31px;
+    width: 115px;
+    margin: 0 auto;
+    padding-left: 35px;
+    cursor: pointer
+}
+
+.module-aside .b-list-3 .active .text1 {
+    font-weight: 700
+}
+
+.module-aside .b-list-3 .img-ico {
+    width: 23px;
+    height: 22px;
+    position: absolute;
+    left: 2px;
+    top: 6px;
+    margin: 0;
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/images/clouddisk-ui/btn_icon.gif?t=1433742597224) no-repeat
+}
+
+.module-aside .b-list-3 .img-ico:hover {
+    text-decoration: none
+}
+
+.module-aside .b-list-3 .aside-hot-icon {
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/images/clouddisk-ui/btn_icon.gif?t=1433742597224) no-repeat scroll -229px -208px transparent;
+    display: inline-block;
+    height: 13px;
+    margin: 3px 0 14px;
+    _margin-bottom: 10px;
+    vertical-align: middle;
+    width: 25px;
+    display: none
+}
+
+.module-aside .b-list-3 .aside-disk {
+    background-position: -205px -0px
+}
+
+.module-aside .b-list-3 .hover .aside-disk,.module-aside .b-list-3 .active .aside-disk {
+    background-position: -228px -0px
+}
+
+.module-aside .b-list-3 .aside-mpic {
+    background-position: -205px -21px
+}
+
+.module-aside .b-list-3 .hover .aside-mpic,.module-aside .b-list-3 .active .aside-mpic {
+    background-position: -228px -21px
+}
+
+.module-aside .b-list-3 .aside-mdoc {
+    background-position: -205px -44px
+}
+
+.module-aside .b-list-3 .hover .aside-mdoc,.module-aside .b-list-3 .active .aside-mdoc {
+    background-position: -228px -44px
+}
+
+.module-aside .b-list-3 .aside-mmusic {
+    background-position: -205px -66px
+}
+
+.module-aside .b-list-3 .hover .aside-mmusic,.module-aside .b-list-3 .active .aside-mmusic {
+    background-position: -228px -66px
+}
+
+.module-aside .b-list-3 .aside-mvideo {
+    background-position: -205px -89px
+}
+
+.module-aside .b-list-3 .hover .aside-mvideo,.module-aside .b-list-3 .active .aside-mvideo {
+    background-position: -228px -89px
+}
+
+.module-aside .b-list-3 .aside-mbt {
+    background-position: -252px 0
+}
+
+.module-aside .b-list-3 .hover .aside-mbt,.module-aside .b-list-3 .active .aside-mbt {
+    background-position: -275px -0px
+}
+
+.module-aside .b-list-3 .aside-moth {
+    background-position: -205px -177px
+}
+
+.module-aside .b-list-3 .hover .aside-moth,.module-aside .b-list-3 .active .aside-moth {
+    background-position: -228px -177px
+}
+
+.module-aside .b-list-3 .aside-share {
+    background-position: -206px -130px
+}
+
+.module-aside .b-list-3 .hover .aside-share,.module-aside .b-list-3 .active .aside-share {
+    background-position: -229px -130px
+}
+
+.module-aside .b-list-3 .aside-inbox {
+    background-position: -251px -89px
+}
+
+.module-aside .b-list-3 .hover .aside-inbox,.module-aside .b-list-3 .active .aside-inbox {
+    background-position: -275px -89px
+}
+
+.module-aside .b-list-3 .aside-recycle {
+    background-position: -206px -151px
+}
+
+.module-aside .b-list-3 .hover .aside-recycle,.module-aside .b-list-3 .active .aside-recycle {
+    background-position: -229px -151px
+}
+
+.module-aside .b-list-3 .separator-1 {
+    height: 0;
+    line-height: 0;
+    _font-size: 0;
+    border-top: #dce1e6 1px solid;
+    border-bottom: #f7f9fb 1px solid;
+    overflow: hidden;
+    margin: 5px auto
+}
+
+.module-aside .side-options .img-ico {
+    float: left;
+    _dispaly: inline
+}
+
+.module-aside .side-options {
+    position: relative;
+    width: 184px;
+    font-size: 12px;
+    margin: 20px 0 20px 18px
+}
+
+.module-aside .side-options .side-option-panel .cl-dl-container a,.module-aside .side-options .side-lalldownload a {
+    padding: 0 4px 0 0;
+    width: 42px;
+    height: auto;
+    background: 0 0;
+    text-align: center;
+    color: #656565;
+    position: static
+}
+
+.module-aside .side-options .side-lalldownload a.side-more {
+    width: 32px
+}
+
+.module-aside .side-options .side-option-panel .cl-dl-container a {
+    width: 62px
+}
+
+.module-aside .side-options .side-option-panel .cl-dl-container a:hover,.module-aside .side-options .side-lalldownload a:hover {
+    color: #237de2
+}
+
+.module-aside .side-lalldownload span,.module-aside .cl-dl-container span {
+    position: static;
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/images/clouddisk-ui/btn-4.png?t=1433742597224) no-repeat
+}
+
+.module-aside .side-lalldownload {
+    display: inline-block;
+    float: none
+}
+
+.module-aside .side-lalldownload span,.module-aside .cl-dl-container span {
+    width: 40px;
+    height: 35px;
+    display: block;
+    position: relative;
+    top: 0
+}
+
+.module-aside .side-lyunguanjia span {
+    background-position: 8px -64px
+}
+
+.module-aside .side-landroid span {
+    background-position: -63px -64px
+}
+
+.module-aside .side-lwp7 span {
+    background-position: -128px -64px
+}
+
+.module-aside .side-liphone span {
+    background-position: 8px -94px
+}
+
+.module-aside .side-lipad span {
+    background-position: -63px -94px
+}
+
+.module-aside .side-lmactong span {
+    background-position: -128px -94px
+}
+
+.module-aside .side-lpctong span {
+    background-position: -199px -94px
+}
+
+.module-aside .side-more span {
+    background-position: -203px -64px;
+    width: 32px
+}
+
+.module-aside .side-lyunguanjia:hover span {
+    background-position: -27px -64px
+}
+
+.module-aside .side-landroid:hover span {
+    background-position: -98px -64px
+}
+
+.module-aside .side-lwp7:hover span {
+    background-position: -163px -64px
+}
+
+.module-aside .side-liphone:hover span {
+    background-position: -27px -94px
+}
+
+.module-aside .side-lipad:hover span {
+    background-position: -98px -94px
+}
+
+.module-aside .side-lmactong:hover span {
+    background-position: -163px -94px
+}
+
+.module-aside .side-lpctong:hover span {
+    background-position: -234px -94px
+}
+
+.module-aside .side-more:hover span {
+    background-position: -238px -64px
+}
+
+.module-aside .side-option-panel {
+    position: absolute;
+    top: -56px;
+    left: 170px;
+    display: none;
+    z-index: 1
+}
+
+.module-aside .side-option-panel .cl-dl-container {
+    width: 278px;
+    border: 1px solid #C6C6C6;
+    box-shadow: 0 3px 5px rgba(0,0,0,.4)
+}
+
+.module-aside .side-option-panel .cl-dl-container dt {
+    float: left;
+    width: 140px;
+    padding: 10px 0 10px 18px
+}
+
+.module-aside .side-option-panel dl {
+    background: #f9f9f9
+}
+
+.module-aside .side-option-panel em.side-arrow {
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/images/clouddisk-ui/btn-4.png?t=1433742597224) -185px -4px no-repeat;
+    height: 18px;
+    top: 68px;
+    position: absolute;
+    z-index: 999;
+    width: 18px;
+    display: block;
+    margin-left: -15px
+}
+
+.module-aside .side-option-panel .side-lqrcode {
+    font-weight: 700;
+    color: #666;
+    margin: 18px 13px 0 0;
+    float: right;
+    line-height: 35px;
+    font-size: 14px
+}
+
+.module-aside .side-option-panel .side-lqrcode img {
+    height: 67px;
+    width: 67px;
+    display: block;
+    margin: 0 auto 5px
+}
+
+.module-aside .side-option-panel .img-ico span {
+    margin: 0 auto
+}
+
+.module-aside .remaining {
+    position: absolute;
+    bottom: 67px;
+    visibility: hidden
+}
+
+.module-aside .capacity {
+    position: relative;
+    margin-left: 23px;
+    bottom: 15px;
+    background: #f9efc4;
+    width: 165px;
+    height: 33px;
+    line-height: 33px;
+    overflow: hidden;
+    zoom:1;display: none
+}
+
+.module-aside .capacity .icon-capa {
+    float: left;
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/images/clouddisk-ui/icon-capa.png?t=1433742597224) no-repeat;
+    background-position: -1px 5px;
+    width: 30px;
+    height: 33px
+}
+
+.module-aside .capacity .get-capacity {
+    color: #594903
+}
+
+.module-aside .capacity .get-capacity a {
+    text-decoration: none
+}
+
+.module-aside .capacity .get-capacity a:hover {
+    text-decoration: underline
+}
+
+.module-aside .overdue-tips {
+    position: relative;
+    width: 175px;
+    margin: 0 auto;
+    bottom: 15px;
+    border: 1px solid #f6d558;
+    border-radius: 5px;
+    background-color: #fff5c7;
+    display: none
+}
+
+.module-aside .overdue-tips .overdue-icon {
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin-top: 2px;
+    margin-left: 1px;
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/widget/adTips/overdueTips/images/spritesheet_e6fb720.png) 0 0 no-repeat
+}
+
+.module-aside .overdue-tips .overdue-icon-vip {
+    background-position: -51px -5px
+}
+
+.module-aside .overdue-tips .overdue-icon-novip {
+    background-position: -2px -47px
+}
+
+.module-aside .overdue-tips .overdue-text {
+    line-height: 33px;
+    font-size: 12px;
+    color: #613900;
+    float: left
+}
+
+.module-aside .overdue-tips .pay-button {
+    line-height: 33px;
+    font-size: 12px;
+    color: #f54240;
+    text-decoration: underline;
+    float: right;
+    margin-right: 5px
+}
+
+.module-aside .overdue-tips .pay-button:hover {
+    opacity: .9;
+    filter: Alpha(opacity=90)
+}
+
+.module-aside .remaining .remaining-quota {
+    margin: 0 28px;
+    width: 155px
+}
+
+.module-aside .remaining .hidden {
+    visibility: hidden
+}
+
+.module-aside .remaining .remainingSpaceUi {
+    height: 6px;
+    width: 155px;
+    background: #c6cfda;
+    line-height: 0;
+    _font-size: 0
+}
+
+.module-aside .remaining .remainingSpaceUi_span {
+    height: 6px;
+    width: 0;
+    line-height: 0;
+    _font-size: 0;
+    background: #3482da;
+    display: block
+}
+
+.module-aside .remaining .remainingSpace {
+    position: absolute;
+    top: 10px;
+    left: 0
+}
+
+.module-aside .remaining .remainingSpace span {
+    font-family: "\5b8b\4f53";
+    font-size: 12px;
+    position: relative;
+    top: 0;
+    left: 0
+}
+
+.module-aside .remaining .bold {
+    font-weight: 700
+}
+
+.module-aside .remaining .bar {
+    position: relative
+}
+
+.module-aside .remaining .add {
+    text-align: right;
+    margin-top: 2px
+}
+
+.module-aside .award-disk-quota {
+    margin-left: 15px;
+    display: none
+}
+
+.module-aside .award-disk-quota .award-img {
+    background: url(http://s1.pan.bdstatic.com/yun-static/common-cdn/images/clouddisk-ui/award_ad.gif?t=1433742597224) no-repeat;
+    display: block;
+    width: 174px;
+    height: 45px;
+    outline: 0
+}

@@ -104,5 +104,22 @@ namespace WebDrive.DAL.Repository
         {
             return dbSet.SqlQuery(query, parameters).ToList();
         }
+
+        public IEnumerable<TEntity> WhereOrLike(Expression<Func<TEntity, string>> valueSelector, IEnumerable<string> values)
+        {
+            IQueryable<TEntity> query = dbSet;
+            var lambda = BuildContainsExpression(valueSelector, values);
+            return query.Where(lambda).ToList();
+        }
+
+        private Expression<Func<TEntity, bool>> BuildContainsExpression(Expression<Func<TEntity, string>> valueSelector, IEnumerable<string> values)
+        {
+            var p = Expression.Parameter(typeof(TEntity));
+            var startsWithMethod = typeof(string).GetMethod("StartsWith", new[] { typeof(string) });
+            var startWiths = values.Select(value => (Expression)Expression.Call(valueSelector.Body, startsWithMethod, Expression.Constant(value, typeof(string))));
+            var body = startWiths.Aggregate<Expression>(((accumulate, equal) => Expression.Or(accumulate, equal)));
+            return Expression.Lambda<Func<TEntity, bool>>(body, p);
+        } 
+
     }
 }

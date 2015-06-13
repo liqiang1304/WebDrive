@@ -41,7 +41,7 @@ namespace WebDrive.Manager.Security
 
         public bool ValidateCount()
         {
-            if (this._userProfile.ExpireLoginCounts != 0 && this._userProfile.ExpireLoginCounts >= this._userProfile.LoginCounts)
+            if (this._userProfile.ExpireLoginCounts == 0 || (this._userProfile.ExpireLoginCounts-1 >= this._userProfile.LoginCounts))
             {
                 return true;
             }
