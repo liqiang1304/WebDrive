@@ -178,13 +178,13 @@ namespace WebDrive.Service
             switch (fileType)
             {
                 case "Pictures":
-                    pattern = new string[] { ".jpg", ".jpeg", ".bmp", ".png", ".tif", ".tiff", ".cdr", ".pcd", ".psd", ".tga" };
+                    pattern = new string[] { ".jpg", ".jpeg", ".bmp", ".png", ".tif", ".tiff", ".cdr", ".pcd", ".psd", ".tga" , ".gif"};
                     break;
                 case "Documents":
-                    pattern = new string[] { ".txt", ".wps", ".doc", ".rtf", "ppt", ".docx", ".pptx", ".html", ".pdf", ".xls", ".xlsx" };
+                    pattern = new string[] { ".txt", ".wps", ".doc", ".rtf", "ppt", ".docx", ".pptx", ".html", ".pdf", ".xls", ".xlsx", ".pages" };
                     break;
                 case "Videos":
-                    pattern = new string[] { ".avi", ".rmvb", ".rm", ".asf", ".divx", ".mpg", ".mpeg", ".wmv", ".mp4", ".mkv", ".vob", ".flv" };
+                    pattern = new string[] { ".avi", ".rmvb", ".rm", ".asf", ".divx", ".mpg", ".mpeg", ".wmv", ".mp4", ".mkv", ".vob", ".flv", ".m4v" };
                     break;
                 case "Torrents":
                     pattern = new string[] { ".torrent" };

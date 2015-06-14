@@ -13,6 +13,7 @@ namespace WebDrive.Controllers
     [Authorize]
     public class QRCodeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult GetCodeImage(string codeString)
         {
             QRCodeManager qr = new QRCodeManager();
